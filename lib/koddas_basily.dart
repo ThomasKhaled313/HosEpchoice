@@ -118,7 +118,7 @@ class BasilyState extends State<Basily>{
       case 'Ere po`cmou': return 'erepoecmo.wav'; break;
       case 'Wc peryn': return 'wcpereen.wav'; break;
       case 'من بعد كما كان': return 'tenooshtempbekcoma.wav'; break;
-      case 'ic o panagioc': return 'icobanagioc.wav'; break;
+      case 'Ic o panagioc': return 'icobanagioc.wav'; break;
       case 'امين قبل الإعتراف' : return 'amene3teraf.mp3'; break;
       case 'المزمور 150' : return 'tawzee3.wav'; break;
       case 'Piwik `nte `pwnq' : return 'piwik.mp3'; break;

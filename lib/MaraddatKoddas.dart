@@ -79,7 +79,7 @@ class MaraddatKoddasState extends State<MaraddatKoddas>{
       case 'Twbh hina الكبيرة' : return 'largeTwbhHina.mp3'; break;
       case 'اطلبوا لكي يرحمنا الله' : return 'smallTwbhHinaArabic.mp3'; break;
       case 'En covia' : return 'encofiaCoptic.mp3'; break;
-      case 'En covia عربي' : return 'encofiaCoptic.mp3'; break;
+      case 'En covia عربي' : return 'encofiaArabic.mp3'; break;
       case 'مرد صلاة الصلح قبطي' : return 'sol7BasiliyCoptic.mp3'; break;
       case 'مرد صلاة الصلح عربي' : return 'sol7BasiliyArabic.mp3'; break;
       case 'مرد صلاة الصلح الغريغوري' : return 'sol7GregoryArabic.mp3'; break;
