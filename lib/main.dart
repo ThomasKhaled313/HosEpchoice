@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:hosepchoice/MaradatShammas.dart';
+import 'package:hosepchoice/Tasbe7a.dart';
 import 'koddas_basily.dart';
 import 'koddas_gregory.dart';
 import 'koddas_kirollosy.dart';
@@ -127,6 +128,7 @@ class HomePageState extends State<HomePage>{
       case 'القداس الغريغوري': Navigator.push(context, MaterialPageRoute(builder: (context)=> Gregory(text))); break;
       case 'القداس الكيرلسي' : Navigator.push(context, MaterialPageRoute(builder: (context)=> Kirrolosy(text))); break;
       case 'مردات الشماس': Navigator.push(context, MaterialPageRoute(builder: (context)=> MaradatShammas(text))); break;
+      case 'تسبحة نصف الليل' : Navigator.push(context, MaterialPageRoute(builder: (context)=> Tasbe7a(text))); break;
       case 'طقس عيد النيروز' :Navigator.push(context, MaterialPageRoute(builder: (context)=> Nayrooz(text))); break;
       case 'طقس أعياد يوحنا المعمدان':  Navigator.push(context, MaterialPageRoute(builder: (context)=> Yohanna(text))); break;
       case 'طقس عيد الصليب':  Navigator.push(context, MaterialPageRoute(builder: (context)=> EedSaleeb(text))); break;
@@ -222,6 +224,7 @@ class HomePageState extends State<HomePage>{
                     button('القداس الغريغوري',imagePath: 'assets/gregory.jpg'),
                     button('القداس الكيرلسي',imagePath: 'assets/kirollos.jpg'),
                     button('مردات الشماس',imagePath: 'assets/stefanos.jpg'),
+                    button('تسبحة نصف الليل',imagePath: 'assets/tasbe7a.jpg'),
                   ],
                   options: CarouselOptions(
                     height: 300,

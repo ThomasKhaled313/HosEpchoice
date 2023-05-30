@@ -70,6 +70,7 @@ class AlSo3oodState extends State<AlSo3ood>{
   getAudioName(title){
     switch(title){
       case 'أرباع الناقوس' : return 'arba3nakoos_so3ood.mp3'; break;
+      case 'ذوكصولوجية الصعود' : return 'zoxology_so3ood.mp3'; break;
       case 'مرد الابركسيس' : return 'marad_eprakcic_so3ood.mp3'; break;
       case 'afrek `tve' : return 'afrek_etfe.mp3'; break;
       case ',rictoc analym(الطويلة)' : return 'khrictoc_analym_long.mp3'; break;
@@ -79,8 +80,7 @@ class AlSo3oodState extends State<AlSo3ood>{
       case 'مرد الانجيل' : return 'marad_engeel_so3ood.mp3'; break;
       case 'اسبسمس ادام' : return 'aspasmoc_adam_so3ood.mp3'; break;
       case 'اسبسمس واطس ثاني' : return 'aspasmoc_watos_tany_so3ood.mp3'; break;
-
-
+      case 'التوزيع' : return 'tawzee3So3ood.mp3'; break;
     }
   }
 
@@ -109,6 +109,8 @@ class AlSo3oodState extends State<AlSo3ood>{
           children: [
             button('أرباع الناقوس'),
 
+            button('ذوكصولوجية الصعود'),
+
             button('مرد الابركسيس'),
 
             button('afrek `tve'),
@@ -125,7 +127,9 @@ class AlSo3oodState extends State<AlSo3ood>{
 
             button('اسبسمس ادام'),
 
-            button('اسبسمس واطس ثاني')
+            button('اسبسمس واطس ثاني'),
+
+            button('التوزيع')
           ],
         ),
       ),
