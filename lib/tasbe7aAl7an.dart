@@ -70,16 +70,23 @@ class Tasbe7aAl7anState extends State<Tasbe7aAl7an>{
   getAudioName(title){
     switch(title){
       case 'Ten;ynou' : return 'tenThinoLong.mp3'; break;
+      case 'الهوس الكبير' : return 'largeHos.mp3'; break;
       case 'Qen ouswt' : return 'khenOuShwt.mp3'; break;
       case 'Marenouwnh' : return 'marenOuWnh.mp3'; break;
       case '`Cmou e`P[oic' : return 'esmoEpchoic.mp3'; break;
       case 'Hwc erof' : return 'hocErof.mp3'; break;
       case 'Arihou`o [acf' : return 'ari.mp3'; break;
+      case 'Tenoueh `ncwk' : return 'tenowehEncwk.mp3'; break;
       case '<ere ne Maria' : return 'shereTasbe7a.mp3'; break;
       case 'Cemou]' : return 'cemoutyLarge.mp3'; break;
-      case 'Lipon ansan;wou]' : return 'LiponTasbe7a.mp3'; break;
+      case 'Loipon ansan;wou]' : return 'LiponTasbe7a.mp3'; break;
       case 'لبش الجمعة' : return 'lobshGom3a.mp3'; break;
       case 'الشيرات السنوي' : return 'sheeratSanawy.mp3'; break;
+      case 'Auen piar,yereuc' : return 'avenpiArshi.mp3'; break;
+      case 'Afswlem erof' : return 'afshwlem.mp3'; break;
+      case 'Ebol hiten Maria الصغيرة' : return 'evolHitenSmall.mp3'; break;
+      case 'Ebol hiten Maria الكبير' : return 'evolHitenLong.mp3'; break;
+      case 'Ouon ouhelpic' : return 'ouOnOuHelbis.mp3'; break;
 
 
 
@@ -111,16 +118,23 @@ class Tasbe7aAl7anState extends State<Tasbe7aAl7an>{
           crossAxisCount: 2,
           children: [
             button('Ten;ynou'),
+            button('الهوس الكبير'),
             button('Qen ouswt'),
             button('Marenouwnh'),
             button('`Cmou e`P[oic'),
             button('Hwc erof'),
             button('Arihou`o [acf'),
+            button('Tenoueh `ncwk'),
             button('<ere ne Maria'),
             button('Cemou]'),
-            button('Lipon ansan;wou]'),
+            button('Loipon ansan;wou]'),
             button('لبش الجمعة'),
-            button('الشيرات السنوي')
+            button('الشيرات السنوي'),
+            button('Auen piar,yereuc'),
+            button('Afswlem erof'),
+            button('Ebol hiten Maria الصغيرة'),
+            button('Ebol hiten Maria الكبير'),
+            button('Ouon ouhelpic')
           ],
         ),
       ),

@@ -98,6 +98,8 @@ class Tasbe7aDamgState extends State<Tasbe7aDamg>{
       case 'ثيؤطوكية الاحد ق14' : return 'part14.mp3'; break;
       case 'ثيؤطوكية الاحد ق15' : return 'part15.mp3'; break;
       case 'Nim gar' : return 'nimghar.mp3'; break;
+      case 'W Pen[oic' : return 'wPenchoic.mp3'; break;
+      case 'Neknai w Panou]' : return 'nekNaiWPanoty.mp3'; break;
 
 
 
@@ -157,6 +159,8 @@ class Tasbe7aDamgState extends State<Tasbe7aDamg>{
             button('ثيؤطوكية الاحد ق14'),
             button('ثيؤطوكية الاحد ق15'),
             button('Nim gar'),
+            button('W Pen[oic'),
+            button('Neknai w Panou]'),
           ],
         ),
       ),
