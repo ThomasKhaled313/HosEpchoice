@@ -1,16 +1,11 @@
-import 'dart:async';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
-import 'package:hosepchoice/MaradatAsheyyaWeBaker.dart';
 import 'package:hosepchoice/tasbe7aAl7an.dart';
+import 'package:hosepchoice/tasbe7aAl7anKyahk.dart';
 import 'package:hosepchoice/tasbe7aDamg.dart';
-import 'AudioPlayerScreen.dart';
+import 'package:hosepchoice/tasbe7aDamgKyahk.dart';
+import 'Zoxologyat.dart';
+import 'ZoxologyatKyahk.dart';
 
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:audioplayers/audioplayers.dart';
-import 'package:share/share.dart';
-
-import 'MaraddatKoddas.dart';
 class Tasbe7a extends StatefulWidget{
   String title;
 
@@ -32,11 +27,23 @@ class Tasbe7aState extends State<Tasbe7a>{
   Widget button(title){
     return InkWell(
       onTap: (){
-        if(title == 'دمج'){
+        if(title == 'سنوي دمج'){
           Navigator.push(context, MaterialPageRoute(builder: (context)=>Tasbe7aDamg(title)));
         }
-        else {
+        else if (title == 'الذوكصولوجيات'){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>Zoxologyat(title)));
+        }
+        else if(title == 'سنوي الحان'){
           Navigator.push(context, MaterialPageRoute(builder: (context)=>Tasbe7aAl7an(title)));
+        }
+        if(title == 'كيهكي دمج'){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>Tasbe7aDamgKyahk(title)));
+        }
+        else if (title == 'ذوكصولوجيات كيهك'){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>ZoxologyatKyahk(title)));
+        }
+        else if(title == 'كيهكي الحان'){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>Tasbe7aAl7anKyahk(title)));
         }
       },
       child: new Container(
@@ -77,9 +84,17 @@ class Tasbe7aState extends State<Tasbe7a>{
           padding: const EdgeInsets.all(12),
           crossAxisCount: 2,
           children: [
-            button('دمج'),
+            button('سنوي دمج'),
 
-            button('الحان'),
+            button('سنوي الحان'),
+
+            button('الذوكصولوجيات'),
+
+            button('كيهكي دمج'),
+
+            button('كيهكي الحان'),
+
+            button('ذوكصولوجيات كيهك'),
 
           ],
         ),

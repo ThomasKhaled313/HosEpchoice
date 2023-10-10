@@ -69,9 +69,10 @@ class SoomEl3adraState extends State<SoomEl3adra>{
 
   getAudioName(title){
     switch(title){
-      case 'je afcaji' : return 'jehafcaji_3adra.mp3'; break;
+      case 'je aucaji' : return 'jehafcaji_3adra.mp3'; break;
       case ',ere ;eotoke' : return 'shere_theotoke.mp3'; break;
       case 'agioc ictin' : return 'agioc_ictin_3adra.mp3'; break;
+      case 'ari`precbeuin' : return 'ariebresvevin.mp3'; break;
       case 'sasf `ncop' : return 'shashf_ensob.mp3'; break;
       case 'deute' : return 'zefte_bandees.mp3'; break;
       case 'rasi ne' : return 'aripresvevin_3adra.mp3'; break;
@@ -105,11 +106,13 @@ class SoomEl3adraState extends State<SoomEl3adra>{
           padding: const EdgeInsets.all(12),
           crossAxisCount: 2,
           children: [
-            button('je afcaji'),
+            button('je aucaji'),
 
             button(',ere ;eotoke'),
 
             button('agioc ictin'),
+
+            button('ari`precbeuin'),
 
             button('sasf `ncop'),
 

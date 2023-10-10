@@ -77,7 +77,7 @@ class GhotacState extends State<Ghotac>{
       case 'اسبسمس ادام (قداس + لقان الغطاس)' : return 'aspasmoc_adam_ghotac.mp3'; break;
       case 'اسبسمس واطس (قداس الغطاس)' : return 'aspasmoc_watos_ghotac.mp3'; break;
       case 'Ouran nsousou' : return 'oranenshosho_ghotac.mp3'; break;
-
+      case 'التوزيع' : return 'tawzee3_ghotac.mp3'; break;
     }
   }
 
@@ -119,6 +119,7 @@ class GhotacState extends State<Ghotac>{
             button('اسبسمس واطس (قداس الغطاس)'),
 
             button('Ouran nsousou'),
+            button('التوزيع'),
 
           ],
         ),

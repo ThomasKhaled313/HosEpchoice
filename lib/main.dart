@@ -31,8 +31,6 @@ import 'BaramonGhotac.dart';
 import 'BaramonMylad.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:in_app_update/in_app_update.dart';
-
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

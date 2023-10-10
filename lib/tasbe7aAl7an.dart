@@ -69,8 +69,9 @@ class Tasbe7aAl7anState extends State<Tasbe7aAl7an>{
 
   getAudioName(title){
     switch(title){
+      case 'اللي العصر' : return 'allyEl3asr.mp3'; break;
+
       case 'Ten;ynou' : return 'tenThinoLong.mp3'; break;
-      case 'الهوس الكبير' : return 'largeHos.mp3'; break;
       case 'Qen ouswt' : return 'khenOuShwt.mp3'; break;
       case 'Marenouwnh' : return 'marenOuWnh.mp3'; break;
       case '`Cmou e`P[oic' : return 'esmoEpchoic.mp3'; break;
@@ -80,6 +81,10 @@ class Tasbe7aAl7anState extends State<Tasbe7aAl7an>{
       case '<ere ne Maria' : return 'shereTasbe7a.mp3'; break;
       case 'Cemou]' : return 'cemoutyLarge.mp3'; break;
       case 'Loipon ansan;wou]' : return 'LiponTasbe7a.mp3'; break;
+      case 'Teoi `nhikanoc' : return 'Teoi_Large.mp3'; break;
+      case ']par;enoc' : return 'typarthenosTasbe7a.mp3'; break;
+      case 'Piouai' : return 'piouai.mp3'; break;
+      case 'Areten;wn]' : return 'aretenthonty.mp3'; break;
       case 'لبش الجمعة' : return 'lobshGom3a.mp3'; break;
       case 'الشيرات السنوي' : return 'sheeratSanawy.mp3'; break;
       case 'Auen piar,yereuc' : return 'avenpiArshi.mp3'; break;
@@ -117,8 +122,8 @@ class Tasbe7aAl7anState extends State<Tasbe7aAl7an>{
           padding: const EdgeInsets.all(12),
           crossAxisCount: 2,
           children: [
+            button('اللي العصر'),
             button('Ten;ynou'),
-            button('الهوس الكبير'),
             button('Qen ouswt'),
             button('Marenouwnh'),
             button('`Cmou e`P[oic'),
@@ -128,6 +133,10 @@ class Tasbe7aAl7anState extends State<Tasbe7aAl7an>{
             button('<ere ne Maria'),
             button('Cemou]'),
             button('Loipon ansan;wou]'),
+            button('Teoi `nhikanoc'),
+            button(']par;enoc'),
+            button('Piouai'),
+            button('Areten;wn]'),
             button('لبش الجمعة'),
             button('الشيرات السنوي'),
             button('Auen piar,yereuc'),

@@ -70,7 +70,7 @@ class Tasbe7aDamgState extends State<Tasbe7aDamg>{
   getAudioName(title){
     switch(title){
       case 'Ten;ynou' : return 'tenThinoDamg.mp3'; break;
-      case 'Tennav' : return 'tennav.mp3'; break;
+      case 'Tennau' : return 'tennav.mp3'; break;
       case 'الهوس الأول' : return 'FirstHos.mp3'; break;
       case 'الهوس الثاني' : return 'SecondHos.mp3'; break;
       case 'الهوس الثالث' : return 'ThirdHos.mp3'; break;

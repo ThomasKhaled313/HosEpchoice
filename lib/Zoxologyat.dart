@@ -1,26 +1,26 @@
 import 'dart:async';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'AudioPlayerScreen.dart';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:share/share.dart';
-class KanaGaleel extends StatefulWidget{
+import 'package:fluttertoast/fluttertoast.dart';
+class Zoxologyat extends StatefulWidget{
   String title;
 
-  KanaGaleel(this.title);
+  Zoxologyat(this.title);
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return KanaGaleelState(title);
+    return ZoxologyatState(title);
   }
 }
 
-class KanaGaleelState extends State<KanaGaleel>{
+class ZoxologyatState extends State<Zoxologyat>{
   String title;
   var url,urlasync;
-  KanaGaleelState(this.title);
+  ZoxologyatState(this.title);
   AudioPlayer audio = AudioPlayer();
 
 
@@ -69,14 +69,23 @@ class KanaGaleelState extends State<KanaGaleel>{
 
   getAudioName(title){
     switch(title){
-      case 'مرد المزمور' : return 'marad_mazmoor_kanagaleel.mp3'; break;
-      case 'مرد الإنجيل' : return 'marad_engeel_kanagaleel.mp3'; break;
-      case 'مرد الابركسيس' : return 'marad_eprakcic_kanagaleel.mp3'; break;
-      case 'ni ,ora' : return 'ni_khora.mp3'; break;
-      case 'اسبسمس ادام' : return 'aspasmoc_adam_kanagaleel.mp3'; break;
-      case 'اسبسمس واطس' : return 'aspasmoc_watos_kanagaleel.mp3'; break;
-      case 'التوزيع' : return 'tawzee3_qana.mp3'; break;
-
+      case 'مقدمة الذوكصولوجيات' : return 'mokaddemet_zoxo.mp3'; break;
+      case 'العذراء عشية' : return '3adra_3asheyya.mp3'; break;
+      case 'العذراء نصف الليل' : return '3adra_noslel.mp3'; break;
+      case 'العذراء باكر' : return '3adra_baker.mp3'; break;
+      case 'الملاك ميخائيل' : return 'zoxo_michael.mp3'; break;
+      case 'السمائيين' : return 'zoxo_sama2eyeen.mp3'; break;
+      case 'يوحنا الأولي' : return 'zoxo_yohanna1.mp3'; break;
+      case 'يوحنا الثانية' : return 'zoxo_yohanna2.mp3'; break;
+      case 'الرسل' : return 'zoxo_rosol.mp3'; break;
+      case 'مارمرقس' : return 'zoxo_markos.mp3'; break;
+      case 'استفانوس' : return 'zoxo_stefanos.mp3'; break;
+      case 'مارجرجس' : return 'zoxo_margirgis.mp3'; break;
+      case 'مارمينا' : return 'zoxo_marmina.mp3'; break;
+      case 'الانبا أنطونيوس' : return 'zoxo_anotonios.mp3'; break;
+      case 'الانبا بيشوي' : return 'zoxo_anbaBishoy.mp3'; break;
+      case 'الانبا ابرآم' : return 'zoxo_anbaAbraam.mp3'; break;
+      case 'ختام الذوكصولوجيات' : return 'zoxo_5etam.mp3'; break;
     }
   }
 
@@ -91,8 +100,7 @@ class KanaGaleelState extends State<KanaGaleel>{
       },
       child: Scaffold(
         appBar: AppBar(
-             backgroundColor: const Color.fromRGBO(22, 22, 22,1),
-
+          backgroundColor: const Color.fromRGBO(22, 22, 22,1),
 
           title: Text(title),
         ),
@@ -103,18 +111,23 @@ class KanaGaleelState extends State<KanaGaleel>{
           padding: const EdgeInsets.all(12),
           crossAxisCount: 2,
           children: [
-            button('مرد المزمور'),
-
-            button('مرد الإنجيل'),
-
-            button('مرد الابركسيس'),
-
-            button('ni ,ora'),
-
-            button('اسبسمس ادام'),
-
-            button('اسبسمس واطس'),
-            button('التوزيع'),
+            button('مقدمة الذوكصولوجيات'),
+            button('العذراء عشية'),
+            button('العذراء نصف الليل'),
+            button('العذراء باكر'),
+            button('الملاك ميخائيل'),
+            button('السمائيين'),
+            button('يوحنا الأولي'),
+            button('يوحنا الثانية'),
+            button('الرسل'),
+            button('مارمرقس'),
+            button('استفانوس'),
+            button('مارجرجس'),
+            button('مارمينا'),
+            button('الانبا أنطونيوس'),
+            button('الانبا بيشوي'),
+            button('الانبا ابرآم'),
+            button('ختام الذوكصولوجيات'),
           ],
         ),
       ),

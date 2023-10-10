@@ -72,7 +72,8 @@ class MyladState extends State<Mylad>{
       case 'السبع طرائق' : return 'saba3_tarayek.mp3'; break;
       case 'ارباع الناقوس' : return 'arba3_nakoos_3eed_mylad.mp3'; break;
       case 'pouro' : return 'eporo_fary7y.mp3'; break;
-      case 'مرد انجيل باكر' : return 'marad_engeelbaker_elmylad.mp3'; break;
+      case 'مرد انجيل عشية' : return 'maradEngeel3asheyaMilad.mp3'; break;
+      case 'مرد انجيل باكر' : return 'maradEngeelBakerMilad.mp3'; break;
       case 'هيتين الميلاد' : return 'hiten_elmylad.mp3'; break;
       case 'مرد الابركسيس' : return 'marad_epracic_elmylad.mp3'; break;
       case 'y par;enoc' : return 'iparthenoc.mp3'; break;
@@ -86,6 +87,7 @@ class MyladState extends State<Mylad>{
       case 'اسبسمس ادام رابع' : return 'fourth_aspasmocadam_elmylad.mp3'; break;
       case 'اسبسمس واطس اول' : return 'first_aspasmocwatos_elmylad.mp3'; break;
       case 'اسبسمس واطس ثاني' : return 'second_aspasmocwatos_elmylad.mp3'; break;
+      case 'التوزيع' : return 'tawzee3_milad.mp3'; break;
       case 'ختام الصلوات' : return 'khetam_elmylad.mp3'; break;
     }
   }
@@ -119,6 +121,8 @@ class MyladState extends State<Mylad>{
 
             button('pouro'),
 
+            button('مرد انجيل عشية'),
+
             button('مرد انجيل باكر'),
 
             button('هيتين الميلاد'),
@@ -146,6 +150,7 @@ class MyladState extends State<Mylad>{
             button('اسبسمس واطس اول'),
 
             button('اسبسمس واطس ثاني'),
+            button('التوزيع'),
 
             button('ختام الصلوات'),
           ],
