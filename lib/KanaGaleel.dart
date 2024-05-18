@@ -1,11 +1,15 @@
 import 'dart:async';
-import 'package:fluttertoast/fluttertoast.dart';
+
+
 import 'package:flutter/material.dart';
 import 'AudioPlayerScreen.dart';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:share/share.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'main.dart';
+import 'dart:convert';
+
 class KanaGaleel extends StatefulWidget{
   String title;
 
@@ -21,8 +25,29 @@ class KanaGaleelState extends State<KanaGaleel>{
   String title;
   var url,urlasync;
   KanaGaleelState(this.title);
-  AudioPlayer audio = AudioPlayer();
+  AudioPlayer audio = AudioPlayer(); // BannerAd bannerAd = BannerAd(
+  //     adUnitId: HomePageState.bannerAdUnitId,
+  //     size: AdSize.banner,
+  //     request: const AdRequest(),
+  //     listener: AdListener(
+  //       onAdLoaded: (Ad ad) => print('BannerAd loaded.'),
+  //       onAdFailedToLoad: (Ad ad, LoadAdError error) {
+  //         ad.dispose();
+  //         print('BannerAd failed to load: $error');
+  //       },
+  //     )
+  // );
+  @override
+  void initState() {
+    super.initState();
 
+  }
+
+  @override
+  void dispose() {
+
+    super.dispose();
+  }
 
   String audioTitle;
   Future<String> getAudioUrl(text) async{
@@ -63,19 +88,35 @@ class KanaGaleelState extends State<KanaGaleel>{
     );
   }
 
-  Widget urlAndNavigate(text){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title)));
+  void urlAndNavigate(text) async {
+    String textContent = await getTextFileContent(text);
+    print(textContent);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title,textContent)));
+  }
+
+  Future<String> getTextFileContent(text) async {
+    Reference storage = FirebaseStorage.instance.ref().child("text_files").child("$text.txt");
+
+    // Retrieve text file as a byte array
+    final bytes = await storage.getData();
+
+    // Decode the byte array to string using UTF-8 encoding
+    final content = utf8.decode(bytes);
+
+    print('Content: $content');
+
+    return content;
   }
 
   getAudioName(title){
     switch(title){
-      case 'مرد المزمور' : return 'marad_mazmoor_kanagaleel.mp3'; break;
-      case 'مرد الإنجيل' : return 'marad_engeel_kanagaleel.mp3'; break;
-      case 'مرد الابركسيس' : return 'marad_eprakcic_kanagaleel.mp3'; break;
+      case 'مرد مزمور قانا الجليل' : return 'marad_mazmoor_kanagaleel.mp3'; break;
+      case 'مرد انجيل قانا الجليل' : return 'marad_engeel_kanagaleel.mp3'; break;
+      case 'مرد ابركسيس قانا الجليل' : return 'marad_eprakcic_kanagaleel.mp3'; break;
       case 'ni ,ora' : return 'ni_khora.mp3'; break;
-      case 'اسبسمس ادام' : return 'aspasmoc_adam_kanagaleel.mp3'; break;
-      case 'اسبسمس واطس' : return 'aspasmoc_watos_kanagaleel.mp3'; break;
-      case 'التوزيع' : return 'tawzee3_qana.mp3'; break;
+      case 'اسبسمس ادام قانا الجليل' : return 'aspasmoc_adam_kanagaleel.mp3'; break;
+      case 'اسبسمس واطس قانا الجليل' : return 'aspasmoc_watos_kanagaleel.mp3'; break;
+      case 'توزيع قانا الجليل' : return 'tawzee3_qana.mp3'; break;
 
     }
   }
@@ -90,6 +131,7 @@ class KanaGaleelState extends State<KanaGaleel>{
         Navigator.pop(context);
       },
       child: Scaffold(
+
         appBar: AppBar(
              backgroundColor: const Color.fromRGBO(22, 22, 22,1),
 
@@ -103,18 +145,18 @@ class KanaGaleelState extends State<KanaGaleel>{
           padding: const EdgeInsets.all(12),
           crossAxisCount: 2,
           children: [
-            button('مرد المزمور'),
+            button('مرد مزمور قانا الجليل'),
 
-            button('مرد الإنجيل'),
+            button('مرد انجيل قانا الجليل'),
 
-            button('مرد الابركسيس'),
+            button('مرد ابركسيس قانا الجليل'),
 
             button('ni ,ora'),
 
-            button('اسبسمس ادام'),
+            button('اسبسمس ادام قانا الجليل'),
 
-            button('اسبسمس واطس'),
-            button('التوزيع'),
+            button('اسبسمس واطس قانا الجليل'),
+            button('توزيع قانا الجليل'),
           ],
         ),
       ),

@@ -2,23 +2,30 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:share/share.dart';
 
-class AudioPlayerScreen extends StatefulWidget {
-  final String audioUrl, audioTitle, title;
 
-  AudioPlayerScreen(this.audioUrl, this.audioTitle, this.title);
+import 'package:audioplayers/audioplayers.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'main.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'main.dart';
+import 'dart:convert';
+
+
+class AudioPlayerScreen extends StatefulWidget {
+  final String audioUrl, audioTitle, title,textContent;
+
+  AudioPlayerScreen(this.audioUrl, this.audioTitle, this.title, this.textContent);
 
   @override
-  _AudioPlayerScreenState createState() => _AudioPlayerScreenState(audioUrl, audioTitle, title);
+  _AudioPlayerScreenState createState() => _AudioPlayerScreenState(audioUrl, audioTitle, title, textContent);
 }
 
 class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   double _sliderValue = 0.0;
-  String url, audioTitle, title;
-  _AudioPlayerScreenState(this.url, this.audioTitle, this.title);
+  String url, audioTitle, title, textContent;
+  _AudioPlayerScreenState(this.url, this.audioTitle, this.title, this.textContent);
   AudioPlayer _audioPlayer;
   Duration _duration;
   Duration _position;
@@ -30,7 +37,12 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
     super.initState();
     _initAudioPlayer();
     _playPause(url);
+  }
 
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   void _initAudioPlayer() {
@@ -153,8 +165,9 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( backgroundColor: const Color.fromRGBO(22, 22, 22,1),
+    return Scaffold(
 
+      backgroundColor: const Color.fromRGBO(22, 22, 22,1),
       appBar: AppBar(
         centerTitle: true,
         title: Text(title),
@@ -173,140 +186,169 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           Navigator.pop(context);
           return;
         },
-        child: Center(
-          child: _isLoading // show CircularProgressIndicator if still loading
-              ? const CircularProgressIndicator()
-              : Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                color: Color.fromRGBO(255, 255, 255, 0.9215686274509803),
-                child: const CircleAvatar(
-                  radius: 150.0,
-                  backgroundImage: AssetImage('assets/m.png'),
-                  backgroundColor: Colors.transparent,
+        child: SingleChildScrollView(
+          child: Center(
+            child: _isLoading // show CircularProgressIndicator if still loading
+                ? const CircularProgressIndicator()
+                : Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width-20,
+                  height: MediaQuery.of(context).size.height/2.5,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(30.0),
+                      child: Card(
+                        elevation: 100.0, // Adjust the elevation as needed
+                        shadowColor: Colors.blueGrey, // Specify the shadow color
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SingleChildScrollView(
+                            child: Container(
+                              width: double.infinity,
+                              child: Text(
+                                '$textContent',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 25,
+                                    fontFamily: 'Coptic',
+                                    height: 1.2
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+
+
+
+                  ),
                 ),
-              ),
-              const SizedBox(height: 30.0),
+                const SizedBox(height: 30.0),
 
-              Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 15.0),
-                    child: Container(
-                      alignment: Alignment.center,
-                      width: MediaQuery.of(context).size.width,
-                      height: 40,
-                      child: Text(
-                        audioTitle,
-                        style: TextStyle(color: Colors.white,fontSize: 25, fontFamily: 'Coptic' ),
-                      )
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 15.0),
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: MediaQuery.of(context).size.width,
+                        height: 40,
+                        child: Text(
+                          audioTitle,
+                          style: TextStyle(color: Colors.white,fontSize: 25, fontFamily: 'Coptic'),
+                        )
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 15.0),
-                    child: Container(
-                      alignment: Alignment.centerRight,
-                      width: MediaQuery.of(context).size.width,
-                      height: 40,
+                    Padding(
+                      padding: const EdgeInsets.only(right: 15.0),
+                      child: Container(
+                        alignment: Alignment.centerRight,
+                        width: MediaQuery.of(context).size.width,
+                        height: 40,
+                        child: IconButton(
+                          icon:  Icon(Icons.speed,color: Colors.white),
+                          onPressed: (){
+                            changeAudioSpeed();
+                          },
+                        ),
+                      ),
+                    ),
+                    Slider(
+                      activeColor: Color.fromRGBO(0, 1, 230,1),
+                      value: _sliderValue,
+                      min: 0.0,
+                      max: _duration?.inSeconds?.toDouble() ?? 0.0,
+                      onChanged: (value) {
+                        setState(() {
+                          _sliderValue = value;
+                          _audioPlayer.seek(Duration(seconds: _sliderValue.toInt()));
+                        });
+                      },
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 25.0,right: 25.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            _position != null
+                                ? _formatDuration(_position)
+                                : _duration != null
+                                ? _formatDuration(Duration.zero)
+                                : 'Loading...',
+                            style: const TextStyle(fontSize: 15.0, color: Colors.white),
+                          ),
+                          Text(
+                            _position != null
+                                ? _formatDuration(_duration)
+                                : _duration != null
+                                ? _formatDuration(Duration.zero)
+                                : 'Loading...',
+                            style: const TextStyle(fontSize: 15.0, color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 10.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.all(10.0),
+                      decoration: const BoxDecoration(
+                          color: Color.fromRGBO(66, 66, 66,1),
+                          shape: BoxShape.circle
+                      ),
+                      width: 50.0,
                       child: IconButton(
-                        icon: const Icon(Icons.speed,color: Colors.white),
-                        onPressed: (){
-                          changeAudioSpeed();
-                        },
+                        iconSize: 30,
+                        icon: const Icon(Icons.fast_rewind,color: Colors.white),
+                        onPressed: _fastBackward,
                       ),
                     ),
-                  ),
-                  Slider(
-                    activeColor: Color.fromRGBO(0, 1, 230,1),
-                    value: _sliderValue,
-                    min: 0.0,
-                    max: _duration?.inSeconds?.toDouble() ?? 0.0,
-                    onChanged: (value) {
-                      setState(() {
-                        _sliderValue = value;
-                        _audioPlayer.seek(Duration(seconds: _sliderValue.toInt()));
-                      });
-                    },
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 25.0,right: 25.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          _position != null
-                              ? _formatDuration(_position)
-                              : _duration != null
-                              ? _formatDuration(Duration.zero)
-                              : 'Loading...',
-                          style: const TextStyle(fontSize: 15.0, color: Colors.white),
-                        ),
-                        Text(
-                          _position != null
-                              ? _formatDuration(_duration)
-                              : _duration != null
-                              ? _formatDuration(Duration.zero)
-                              : 'Loading...',
-                          style: const TextStyle(fontSize: 15.0, color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: 10.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.all(10.0),
-                    decoration: const BoxDecoration(
-                        color: Color.fromRGBO(66, 66, 66,1),
-                        shape: BoxShape.circle
-                    ),
-                    width: 50.0,
-                    child: IconButton(
-                      iconSize: 30,
-                      icon: const Icon(Icons.fast_rewind,color: Colors.white),
-                      onPressed: _fastBackward,
-                    ),
-                  ),
-                  const SizedBox(width: 10.0),
-                  Container(
-                    margin: const EdgeInsets.all(10.0),
-                    decoration: const BoxDecoration(
-                        color: Color.fromRGBO(0, 1, 230,1),
-                        shape: BoxShape.circle
-                    ),
-                    width: 70.0,
-                    child: IconButton(
-                      iconSize: 50,
-                      icon: Icon(
-                        _isPlaying ? Icons.pause : Icons.play_arrow,
-                          color: Colors.white
+                    const SizedBox(width: 10.0),
+                    Container(
+                      margin: const EdgeInsets.all(10.0),
+                      decoration: const BoxDecoration(
+                          color: Color.fromRGBO(0, 1, 230,1),
+                          shape: BoxShape.circle
                       ),
-                      onPressed: () => _playPause(url),
+                      width: 70.0,
+                      child: IconButton(
+                        iconSize: 50,
+                        icon: Icon(
+                          _isPlaying ? Icons.pause : Icons.play_arrow,
+                            color: Colors.white
+                        ),
+                        onPressed: () => _playPause(url),
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 10.0),
-                  Container(
-                    margin: const EdgeInsets.all(10.0),
-                    decoration: const BoxDecoration(
-                        color: Color.fromRGBO(66, 66, 66,1),
-                        shape: BoxShape.circle
+                    const SizedBox(width: 10.0),
+                    Container(
+                      margin: const EdgeInsets.all(10.0),
+                      decoration: const BoxDecoration(
+                          color: Color.fromRGBO(66, 66, 66,1),
+                          shape: BoxShape.circle
+                      ),
+                      width: 50.0,
+                      child: IconButton(
+                        iconSize: 30,
+                        icon: const Icon(Icons.fast_forward,color: Colors.white),
+                        onPressed: _fastForward,
+                      ),
                     ),
-                    width: 50.0,
-                    child: IconButton(
-                      iconSize: 30,
-                      icon: const Icon(Icons.fast_forward,color: Colors.white),
-                      onPressed: _fastForward,
-                    ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

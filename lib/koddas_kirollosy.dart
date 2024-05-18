@@ -4,9 +4,13 @@ import 'AudioPlayerScreen.dart';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'main.dart';
 import 'package:flutter/services.dart' as rootBundle;
-import 'package:share/share.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'dart:convert';
+
+
+
 class Kirrolosy extends StatefulWidget{
   String title;
 
@@ -23,13 +27,22 @@ class KirrolosyState extends State<Kirrolosy>{
   var url,urlasync;
   KirrolosyState(this.title);
   AudioPlayer audio = AudioPlayer();
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   String audioTitle;
   Future<String> getAudioUrl(text) async{
     var ref = await getAudioName(text);
     audioTitle = text;
     Reference storage = FirebaseStorage.instance.ref().child("${ref}");
     String url = (await storage.getDownloadURL()).toString();
-    print('sadasfasfasfsa : ${url}');
     return url;
   }
 
@@ -44,7 +57,6 @@ class KirrolosyState extends State<Kirrolosy>{
           setState(() {
             url = urlasync;
           });
-          print('abo el urllllllllllllllllllllllllllllllllllllllll: $url');
           urlAndNavigate(title);
         });
 
@@ -62,8 +74,24 @@ class KirrolosyState extends State<Kirrolosy>{
     );
   }
 
-  Widget urlAndNavigate(text){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title)));
+  void urlAndNavigate(text) async {
+    String textContent = await getTextFileContent(text);
+    print(textContent);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title,textContent)));
+  }
+
+  Future<String> getTextFileContent(text) async {
+    Reference storage = FirebaseStorage.instance.ref().child("text_files").child("$text.txt");
+
+    // Retrieve text file as a byte array
+    final bytes = await storage.getData();
+
+    // Decode the byte array to string using UTF-8 encoding
+    final content = utf8.decode(bytes);
+
+    print('Content: $content');
+
+    return content;
   }
 
   getAudioName(title){
@@ -84,6 +112,7 @@ class KirrolosyState extends State<Kirrolosy>{
         Navigator.pop(context);
       },
       child: Scaffold(
+
         appBar: AppBar(
           backgroundColor: const Color.fromRGBO(22, 22, 22,1),
           title: Text(title),

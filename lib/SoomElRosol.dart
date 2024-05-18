@@ -1,11 +1,15 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
+
 import 'AudioPlayerScreen.dart';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:share/share.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'main.dart';
+import 'dart:convert';
+
 class SoomElRosol extends StatefulWidget{
   String title;
 
@@ -21,8 +25,29 @@ class SoomElRosolState extends State<SoomElRosol>{
   String title;
   var url,urlasync;
   SoomElRosolState(this.title);
-  AudioPlayer audio = AudioPlayer();
+  AudioPlayer audio = AudioPlayer(); // BannerAd bannerAd = BannerAd(
+  //     adUnitId: HomePageState.bannerAdUnitId,
+  //     size: AdSize.banner,
+  //     request: const AdRequest(),
+  //     listener: AdListener(
+  //       onAdLoaded: (Ad ad) => print('BannerAd loaded.'),
+  //       onAdFailedToLoad: (Ad ad, LoadAdError error) {
+  //         ad.dispose();
+  //         print('BannerAd failed to load: $error');
+  //       },
+  //     )
+  // );
+  @override
+  void initState() {
+    super.initState();
 
+  }
+
+  @override
+  void dispose() {
+
+    super.dispose();
+  }
 
   String audioTitle;
   Future<String> getAudioUrl(text) async{
@@ -63,17 +88,33 @@ class SoomElRosolState extends State<SoomElRosol>{
     );
   }
 
-  Widget urlAndNavigate(text){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title)));
+  void urlAndNavigate(text) async {
+    String textContent = await getTextFileContent(text);
+    print(textContent);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title,textContent)));
+  }
+
+  Future<String> getTextFileContent(text) async {
+    Reference storage = FirebaseStorage.instance.ref().child("text_files").child("$text.txt");
+
+    // Retrieve text file as a byte array
+    final bytes = await storage.getData();
+
+    // Decode the byte array to string using UTF-8 encoding
+    final content = utf8.decode(bytes);
+
+    print('Content: $content');
+
+    return content;
   }
 
   getAudioName(title){
     switch(title){
       case 'nirwmi' : return 'niromi.mp3'; break;
-      case 'مرد الابركسيس' : return 'marad_eprakcic_soomrosol.mp3'; break;
-      case 'مرد الانجيل' : return 'marad_engeel_rosol.mp3'; break;
-      case 'اسبسمس ادام' : return 'aspasmoc_adam_rosol.mp3'; break;
-      case 'اسبسمس واطس' : return 'aspasmoc_watos_rosol.mp3'; break;
+      case 'مرد ابركسيس الرسل' : return 'marad_eprakcic_soomrosol.mp3'; break;
+      case 'مرد انجيل الرسل' : return 'marad_engeel_rosol.mp3'; break;
+      case 'اسبسمس ادام الرسل' : return 'aspasmoc_adam_rosol.mp3'; break;
+      case 'اسبسمس واطس الرسل' : return 'aspasmoc_watos_rosol.mp3'; break;
       case 'acwmen' : return 'acomen.mp3'; break;
       case 'ontoc' : return 'ondos_rosol.mp3'; break;
       case '`n;wten de' : return 'enthotenze.mp3'; break;
@@ -92,6 +133,7 @@ class SoomElRosolState extends State<SoomElRosol>{
         Navigator.pop(context);
       },
       child: Scaffold(
+
         appBar: AppBar(
              backgroundColor: const Color.fromRGBO(22, 22, 22,1),
 
@@ -105,13 +147,13 @@ class SoomElRosolState extends State<SoomElRosol>{
           padding: const EdgeInsets.all(12),
           crossAxisCount: 2,
           children: [
-            button('مرد الابركسيس'),
+            button('مرد ابركسيس الرسل'),
 
-            button('مرد الانجيل'),
+            button('مرد انجيل الرسل'),
 
-            button('اسبسمس ادام'),
+            button('اسبسمس ادام الرسل'),
 
-            button('اسبسمس واطس'),
+            button('اسبسمس واطس الرسل'),
 
             button('acwmen'),
 

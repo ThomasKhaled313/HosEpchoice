@@ -4,7 +4,12 @@ import 'AudioPlayerScreen.dart';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:share/share.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'main.dart';
+import 'dart:convert';
+
+
+
 class SoomYonan extends StatefulWidget{
   String title;
 
@@ -20,8 +25,29 @@ class SoomYonanState extends State<SoomYonan>{
   String title;
   var url,urlasync;
   SoomYonanState(this.title);
-  AudioPlayer audio = AudioPlayer();
+  AudioPlayer audio = AudioPlayer(); // BannerAd bannerAd = BannerAd(
+  //     adUnitId: HomePageState.bannerAdUnitId,
+  //     size: AdSize.banner,
+  //     request: const AdRequest(),
+  //     listener: AdListener(
+  //       onAdLoaded: (Ad ad) => print('BannerAd loaded.'),
+  //       onAdFailedToLoad: (Ad ad, LoadAdError error) {
+  //         ad.dispose();
+  //         print('BannerAd failed to load: $error');
+  //       },
+  //     )
+  // );
+  @override
+  void initState() {
+    super.initState();
 
+  }
+
+  @override
+  void dispose() {
+
+    super.dispose();
+  }
 
   String audioTitle;
   Future<String> getAudioUrl(text) async{
@@ -62,13 +88,29 @@ class SoomYonanState extends State<SoomYonan>{
     );
   }
 
-  Widget urlAndNavigate(text){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title)));
+  void urlAndNavigate(text) async {
+    String textContent = await getTextFileContent(text);
+    print(textContent);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title,textContent)));
+  }
+
+  Future<String> getTextFileContent(text) async {
+    Reference storage = FirebaseStorage.instance.ref().child("text_files").child("$text.txt");
+
+    // Retrieve text file as a byte array
+    final bytes = await storage.getData();
+
+    // Decode the byte array to string using UTF-8 encoding
+    final content = utf8.decode(bytes);
+
+    print('Content: $content');
+
+    return content;
   }
 
   getAudioName(title){
     switch(title){
-      case 'الذوكصولوجية' : return 'zoksologiet_yonan.mp3'; break;
+      case 'ذوكصولوجية صوم يونان' : return 'zoksologiet_yonan.mp3'; break;
       case 'مرد انجيل باكر الإثنين' : return 'maradengeel_bakeretneen_yonan.mp3'; break;
       case 'مرد انجيل قداس الإثنين' : return 'maradengeel_koddasetneen_yonan.mp3'; break;
       case 'مرد انجيل باكر الثلاثاء' : return 'maradengeel_bakertalat_yonan.mp3'; break;
@@ -77,7 +119,7 @@ class SoomYonanState extends State<SoomYonan>{
       case 'مرد انجيل قداس الاربعاء' : return 'maradengeel_koddasarba3_yonan.mp3'; break;
       case 'مرد انجيل باكر الخميس' : return 'maradengeel_baker5amees_yonan.mp3'; break;
       case 'مرد انجيل قداس الخميس' : return 'maradengeel_koddas5amees_yonan.mp3'; break;
-      case 'الهيتينية' : return 'hiten_yonan.mp3'; break;
+      case 'هيتينية صوم يونان' : return 'hiten_yonan.mp3'; break;
       case 'iwna piprovytyc' : return 'tawzee3_yonan.mp3'; break;
 
     }
@@ -93,6 +135,7 @@ class SoomYonanState extends State<SoomYonan>{
         Navigator.pop(context);
       },
       child: Scaffold(
+
         appBar: AppBar(
              backgroundColor: const Color.fromRGBO(22, 22, 22,1),
 
@@ -106,7 +149,7 @@ class SoomYonanState extends State<SoomYonan>{
           padding: const EdgeInsets.all(12),
           crossAxisCount: 2,
           children: [
-            button('الذوكصولوجية'),
+            button('ذوكصولوجية صوم يونان'),
 
             button('مرد انجيل باكر الإثنين'),
 
@@ -124,7 +167,7 @@ class SoomYonanState extends State<SoomYonan>{
 
             button('مرد انجيل قداس الخميس'),
 
-            button('الهيتينية'),
+            button('هيتينية صوم يونان'),
 
             button('iwna piprovytyc')
           ],

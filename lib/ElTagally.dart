@@ -4,8 +4,12 @@ import 'AudioPlayerScreen.dart';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:share/share.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'main.dart';
+import 'dart:convert';
+
+
+
 class ElTagally extends StatefulWidget{
   String title;
 
@@ -21,8 +25,29 @@ class ElTagallyState extends State<ElTagally>{
   String title;
   var url,urlasync;
   ElTagallyState(this.title);
-  AudioPlayer audio = AudioPlayer();
+  AudioPlayer audio = AudioPlayer(); // BannerAd bannerAd = BannerAd(
+  //     adUnitId: HomePageState.bannerAdUnitId,
+  //     size: AdSize.banner,
+  //     request: const AdRequest(),
+  //     listener: AdListener(
+  //       onAdLoaded: (Ad ad) => print('BannerAd loaded.'),
+  //       onAdFailedToLoad: (Ad ad, LoadAdError error) {
+  //         ad.dispose();
+  //         print('BannerAd failed to load: $error');
+  //       },
+  //     )
+  // );
+  @override
+  void initState() {
+    super.initState();
 
+  }
+
+  @override
+  void dispose() {
+
+    super.dispose();
+  }
 
   String audioTitle;
   Future<String> getAudioUrl(text) async{
@@ -63,16 +88,32 @@ class ElTagallyState extends State<ElTagally>{
     );
   }
 
-  Widget urlAndNavigate(text){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title)));
+  void urlAndNavigate(text) async {
+    String textContent = await getTextFileContent(text);
+    print(textContent);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title,textContent)));
+  }
+
+  Future<String> getTextFileContent(text) async {
+    Reference storage = FirebaseStorage.instance.ref().child("text_files").child("$text.txt");
+
+    // Retrieve text file as a byte array
+    final bytes = await storage.getData();
+
+    // Decode the byte array to string using UTF-8 encoding
+    final content = utf8.decode(bytes);
+
+    print('Content: $content');
+
+    return content;
   }
 
   getAudioName(title){
     switch(title){
-      case 'أرباع الناقوس' : return 'arba3_nakoos_tagally.mp3'; break;
+      case 'أرباع ناقوس التجلي' : return 'arba3_nakoos_tagally.mp3'; break;
       case ']galilea' : return 'tygalilea.mp3'; break;
-      case 'مرد الانجيل' : return 'marad_engeel_tagaly.mp3'; break;
-      case 'مرد المزمور' : return 'marada_mazmoor_tagaly.mp3'; break;
+      case 'مرد انجيل التجلي' : return 'marad_engeel_tagaly.mp3'; break;
+      case 'مرد مزمور التجلي' : return 'marada_mazmoor_tagaly.mp3'; break;
 
     }
   }
@@ -87,6 +128,7 @@ class ElTagallyState extends State<ElTagally>{
         Navigator.pop(context);
       },
       child: Scaffold(
+
         appBar: AppBar(
           backgroundColor: const Color.fromRGBO(22, 22, 22,1),
           title: Text(title),
@@ -98,13 +140,13 @@ class ElTagallyState extends State<ElTagally>{
           padding: const EdgeInsets.all(12),
           crossAxisCount: 2,
           children: [
-            button('أرباع الناقوس'),
+            button('أرباع ناقوس التجلي'),
 
             button(']galilea'),
 
-            button('مرد المزمور'),
+            button('مرد مزمور التجلي'),
 
-            button('مرد الانجيل')
+            button('مرد انجيل التجلي')
           ],
         ),
       ),

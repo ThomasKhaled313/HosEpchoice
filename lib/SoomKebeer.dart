@@ -4,8 +4,12 @@ import 'AudioPlayerScreen.dart';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:share/share.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'main.dart';
+
+
+import 'dart:convert';
+
 
 class SoomKebeer extends StatefulWidget{
   String title;
@@ -22,8 +26,29 @@ class SoomKebeerState extends State<SoomKebeer>{
   String title;
   var url,urlasync;
   SoomKebeerState(this.title);
-  AudioPlayer audio = AudioPlayer();
+  AudioPlayer audio = AudioPlayer(); // BannerAd bannerAd = BannerAd(
+  //     adUnitId: HomePageState.bannerAdUnitId,
+  //     size: AdSize.banner,
+  //     request: const AdRequest(),
+  //     listener: AdListener(
+  //       onAdLoaded: (Ad ad) => print('BannerAd loaded.'),
+  //       onAdFailedToLoad: (Ad ad, LoadAdError error) {
+  //         ad.dispose();
+  //         print('BannerAd failed to load: $error');
+  //       },
+  //     )
+  // );
+  @override
+  void initState() {
+    super.initState();
 
+  }
+
+  @override
+  void dispose() {
+
+    super.dispose();
+  }
 
   String audioTitle;
   Future<String> getAudioUrl(text) async{
@@ -64,15 +89,31 @@ class SoomKebeerState extends State<SoomKebeer>{
     );
   }
 
-  Widget urlAndNavigate(text){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title)));
+  void urlAndNavigate(text) async {
+    String textContent = await getTextFileContent(text);
+    print(textContent);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title,textContent)));
+  }
+
+  Future<String> getTextFileContent(text) async {
+    Reference storage = FirebaseStorage.instance.ref().child("text_files").child("$text.txt");
+
+    // Retrieve text file as a byte array
+    final bytes = await storage.getData();
+
+    // Decode the byte array to string using UTF-8 encoding
+    final content = utf8.decode(bytes);
+
+    print('Content: $content');
+
+    return content;
   }
 
   getAudioName(title){
     switch(title){
       case 'كيرياليسون باكر' : return 'kirilison_baker.mp3'; break;
-      case 'tenoueh ncwk(1)' : return 'tenouehensok_soomelkebeer_1.mp3'; break;
-      case 'tenoueh ncwk(2)' : return 'tenouehensok_soomelkebeer_2.mp3'; break;
+      case 'tenoueh ncwk(1) الصيامي' : return 'tenouehensok_soomelkebeer_1.mp3'; break;
+      case 'tenoueh ncwk(2) الصيامي' : return 'tenouehensok_soomelkebeer_2.mp3'; break;
       case 'allylouia eiei' : return 'alleloia_eiei.mp3'; break;
       case 'nefcen]' : return 'nefcenti.mp3'; break;
       case 'n;o te ]soury' : return 'ensotetyshory.mp3'; break;
@@ -81,17 +122,20 @@ class SoomKebeerState extends State<SoomKebeer>{
       case 'megalou ar,iereuc' : return 'megalo.mp3'; break;
       case ']hiryny' : return 'marad_engeel_soomkebeer.mp3'; break;
       case 'je peniwt' : return 'maradengeel_sobot_a7ad_soomkebeer.mp3'; break;
-      case 'اسبسمس ادام' : return 'aspasmoc_adam_soomkebeer.mp3'; break;
-      case 'اسبسمس واطس اول' : return 'aspasmocwatos_soomkebeer.mp3'; break;
-      case 'اسبسمس واطس ثاني' : return 'aspasmoc_watos2_soomelkebeer.mp3'; break;
-      case 'الذوكصولوجية 2' : return 'zoxologiat_tinestia_ayam_soomelkebeer.mp3'; break;
-      case 'الذوكصولوجية 3' : return 'zoksologiat_amoinianav_soomelkebeer.mp3'; break;
-      case 'الذوكصولوجية 4' : return 'zoksologiat_pimairwmi_soomelkebeer.mp3'; break;
-      case 'توزيع الايام' : return 'tawze3ayam_somelkebeer.mp3'; break;
-      case 'توزيع الاحاد' : return 'tawzi3a7ad_soumkeber.mp3'; break;
-      case 'je fcmarwout' : return 'geefesmaro2ot_soomkebeer.mp3'; break;
+      case 'اسبسمس ادام الصوم الكبير' : return 'aspasmoc_adam_soomkebeer.mp3'; break;
+      case 'اسبسمس واطس الصوم الكبير الاول' : return 'aspasmocwatos_soomkebeer.mp3'; break;
+      case 'اسبسمس واطس الصوم الكبير الثاني' : return 'aspasmoc_watos2_soomelkebeer.mp3'; break;
+      case 'الذوكصولوجية الاولي للصوم الكبير' : return 'zoksologiat_neknai_soomelkebeer.mp3'; break;
+      case 'الذوكصولوجية الثانية للصوم الكبير' : return 'zoxologiat_tinestia_ayam_soomelkebeer.mp3'; break;
+      case 'الذوكصولوجية الثالثة للصوم الكبير' : return 'zoksologiat_amoinianav_soomelkebeer.mp3'; break;
+      case 'الذوكصولوجية الرابعة للصوم الكبير' : return 'zoksologiat_pimairwmi_soomelkebeer.mp3'; break;
+      case 'الذوكصولوجية الخامسة للصوم الكبير' : return 'zoksologiat_tynestia_kbeera_soomelkebeer.mp3'; break;
+      case 'توزيع ايام الصوم الكبير' : return 'tawze3ayam_somelkebeer.mp3'; break;
+      case 'توزيع احاد الصوم الكبير' : return 'tawzi3a7ad_soumkeber.mp3'; break;
+      case 'je fcmarwout الصيامي' : return 'geefesmaro2ot_soomkebeer.mp3'; break;
       case 'pimairwmi' : return 'pimairomy.mp3'; break;
       case 'ounis]' : return 'oneshti.mp3'; break;
+      case 'قانون ختام للصوم الكبير' : return 'khetam_soom_kbeer.mp3'; break;
       case 'مزمور جمعة ختام الصوم' : return 'mazmoor_gom3et5etamsoom.mp3'; break;
       case 'مرد انجيل جمعة ختام الصوم' : return 'maradengeel_gom3et5etamsoom.mp3'; break;
 
@@ -108,6 +152,7 @@ class SoomKebeerState extends State<SoomKebeer>{
         Navigator.pop(context);
       },
       child: Scaffold(
+
         appBar: AppBar(
              backgroundColor: const Color.fromRGBO(22, 22, 22,1),
 
@@ -123,9 +168,9 @@ class SoomKebeerState extends State<SoomKebeer>{
           children: [
             button('كيرياليسون باكر'),
 
-            button('tenoueh ncwk(1)'),
+            button('tenoueh ncwk(1) الصيامي'),
 
-            button('tenoueh ncwk(2)'),
+            button('tenoueh ncwk(2) الصيامي'),
 
             button('allylouia eiei'),
 
@@ -143,27 +188,33 @@ class SoomKebeerState extends State<SoomKebeer>{
 
             button('je peniwt'),
 
-            button('اسبسمس ادام'),
+            button('اسبسمس ادام الصوم الكبير'),
 
-            button('اسبسمس واطس اول'),
+            button('اسبسمس واطس الصوم الكبير الاول'),
 
-            button('اسبسمس واطس ثاني'),
+            button('اسبسمس واطس الصوم الكبير الثاني'),
 
-            button('الذوكصولوجية 2'),
+            button('الذوكصولوجية الاولي للصوم الكبير'),
 
-            button('الذوكصولوجية 3'),
+            button('الذوكصولوجية الثانية للصوم الكبير'),
 
-            button('الذوكصولوجية 4'),
+            button('الذوكصولوجية الثالثة للصوم الكبير'),
 
-            button('توزيع الايام'),
+            button('الذوكصولوجية الرابعة للصوم الكبير'),
 
-            button('توزيع الاحاد'),
+            button('الذوكصولوجية الخامسة للصوم الكبير'),
 
-            button('je fcmarwout'),
+            button('توزيع ايام الصوم الكبير'),
+
+            button('توزيع احاد الصوم الكبير'),
+
+            button('je fcmarwout الصيامي'),
 
             button('pimairwmi'),
 
             button('ounis]'),
+
+            button('قانون ختام الصوم الكبير'),
 
             button('مزمور جمعة ختام الصوم'),
 

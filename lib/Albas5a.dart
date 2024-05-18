@@ -4,8 +4,12 @@ import 'AudioPlayerScreen.dart';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:share/share.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'main.dart';
+
+
+import 'dart:convert';
+
 class AlBas5a extends StatefulWidget{
   String title;
 
@@ -21,7 +25,29 @@ class AlBas5aState extends State<AlBas5a>{
   String title;
   var url,urlasync;
   AlBas5aState(this.title);
-  AudioPlayer audio = AudioPlayer();
+  AudioPlayer audio = AudioPlayer(); // BannerAd bannerAd = BannerAd(
+  //     adUnitId: HomePageState.bannerAdUnitId,
+  //     size: AdSize.banner,
+  //     request: const AdRequest(),
+  //     listener: AdListener(
+  //       onAdLoaded: (Ad ad) => print('BannerAd loaded.'),
+  //       onAdFailedToLoad: (Ad ad, LoadAdError error) {
+  //         ad.dispose();
+  //         print('BannerAd failed to load: $error');
+  //       },
+  //     )
+  // );
+  @override
+  void initState() {
+    super.initState();
+
+  }
+
+  @override
+  void dispose() {
+
+    super.dispose();
+  }
 
 
   String audioTitle;
@@ -63,8 +89,24 @@ class AlBas5aState extends State<AlBas5a>{
     );
   }
 
-  Widget urlAndNavigate(text){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title)));
+  void urlAndNavigate(text) async {
+    String textContent = await getTextFileContent(text);
+    print(textContent);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title,textContent)));
+  }
+
+  Future<String> getTextFileContent(text) async {
+    Reference storage = FirebaseStorage.instance.ref().child("text_files").child("$text.txt");
+
+    // Retrieve text file as a byte array
+    final bytes = await storage.getData();
+
+    // Decode the byte array to string using UTF-8 encoding
+    final content = utf8.decode(bytes);
+
+    print('Content: $content');
+
+    return content;
   }
 
   getAudioName(title){
@@ -73,7 +115,8 @@ class AlBas5aState extends State<AlBas5a>{
       case 'الانجيل قبطي' : return 'engeel_7azayny.mp3'; break;
       case 'مقدمة العظة' : return 'mokademet_eza.mp3'; break;
       case 'ختام العظة' : return 'khetam_eleza.mp3'; break;
-      case 'Ke `upertou' : return 'keEbertoDamg.mp3'; break;
+      case 'Ke `upertou دمج' : return 'keEbertoDamg.mp3'; break;
+      case 'Ke `upertou لحن' : return 'keEpertoLa7n.mp3'; break;
       case 'مقدمة + ختام الطرح' : return 'tar7Hazayni.mp3'; break;
       case '`Pouro الختام' : return 'epouro5etamBas5a.mp3'; break;
     }
@@ -89,6 +132,7 @@ class AlBas5aState extends State<AlBas5a>{
         Navigator.pop(context);
       },
       child: Scaffold(
+
         appBar: AppBar(
              backgroundColor: const Color.fromRGBO(22, 22, 22,1),
 
@@ -106,7 +150,8 @@ class AlBas5aState extends State<AlBas5a>{
             button('الانجيل قبطي'),
             button('مقدمة العظة'),
             button('ختام العظة'),
-            button('Ke `upertou'),
+            button('Ke `upertou دمج'),
+            button('Ke `upertou لحن'),
             button('مقدمة + ختام الطرح'),
             button('`Pouro الختام'),
           ],

@@ -1,12 +1,16 @@
 import 'dart:async';
-import 'package:fluttertoast/fluttertoast.dart';
+
+
 import 'package:flutter/material.dart';
-import 'package:hosepchoice/MaradatAsheyyaWeBaker.dart';
 import 'AudioPlayerScreen.dart';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:share/share.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'MaradatAsheyyaWeBaker.dart';
+import 'main.dart';
+import 'dart:convert';
+
 
 import 'MaraddatKoddas.dart';
 class MaradatShammas extends StatefulWidget{
@@ -50,7 +54,29 @@ class MaradatShammasState extends State<MaradatShammas>{
     );
   }
 
+   // BannerAd bannerAd = BannerAd(
+  //     adUnitId: HomePageState.bannerAdUnitId,
+  //     size: AdSize.banner,
+  //     request: const AdRequest(),
+  //     listener: AdListener(
+  //       onAdLoaded: (Ad ad) => print('BannerAd loaded.'),
+  //       onAdFailedToLoad: (Ad ad, LoadAdError error) {
+  //         ad.dispose();
+  //         print('BannerAd failed to load: $error');
+  //       },
+  //     )
+  // );
+  @override
+  void initState() {
+    super.initState();
 
+  }
+
+  @override
+  void dispose() {
+
+    super.dispose();
+  }
 
 
 
@@ -62,6 +88,7 @@ class MaradatShammasState extends State<MaradatShammas>{
         Navigator.pop(context);
       },
       child: Scaffold(
+
         appBar: AppBar(
           backgroundColor: const Color.fromRGBO(22, 22, 22,1),
 

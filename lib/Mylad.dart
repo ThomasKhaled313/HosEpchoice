@@ -4,8 +4,12 @@ import 'AudioPlayerScreen.dart';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:share/share.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'main.dart';
+
+
+import 'dart:convert';
+
 class Mylad extends StatefulWidget{
   String title;
 
@@ -21,8 +25,29 @@ class MyladState extends State<Mylad>{
   String title;
   var url,urlasync;
   MyladState(this.title);
-  AudioPlayer audio = AudioPlayer();
+  AudioPlayer audio = AudioPlayer(); // BannerAd bannerAd = BannerAd(
+  //     adUnitId: HomePageState.bannerAdUnitId,
+  //     size: AdSize.banner,
+  //     request: const AdRequest(),
+  //     listener: AdListener(
+  //       onAdLoaded: (Ad ad) => print('BannerAd loaded.'),
+  //       onAdFailedToLoad: (Ad ad, LoadAdError error) {
+  //         ad.dispose();
+  //         print('BannerAd failed to load: $error');
+  //       },
+  //     )
+  // );
+  @override
+  void initState() {
+    super.initState();
 
+  }
+
+  @override
+  void dispose() {
+
+    super.dispose();
+  }
 
   String audioTitle;
   Future<String> getAudioUrl(text) async{
@@ -63,32 +88,48 @@ class MyladState extends State<Mylad>{
     );
   }
 
-  Widget urlAndNavigate(text){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title)));
+  void urlAndNavigate(text) async {
+    String textContent = await getTextFileContent(text);
+    print(textContent);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title,textContent)));
+  }
+
+  Future<String> getTextFileContent(text) async {
+    Reference storage = FirebaseStorage.instance.ref().child("text_files").child("$text.txt");
+
+    // Retrieve text file as a byte array
+    final bytes = await storage.getData();
+
+    // Decode the byte array to string using UTF-8 encoding
+    final content = utf8.decode(bytes);
+
+    print('Content: $content');
+
+    return content;
   }
 
   getAudioName(title){
     switch(title){
       case 'السبع طرائق' : return 'saba3_tarayek.mp3'; break;
-      case 'ارباع الناقوس' : return 'arba3_nakoos_3eed_mylad.mp3'; break;
-      case 'pouro' : return 'eporo_fary7y.mp3'; break;
-      case 'مرد انجيل عشية' : return 'maradEngeel3asheyaMilad.mp3'; break;
-      case 'مرد انجيل باكر' : return 'maradEngeelBakerMilad.mp3'; break;
+      case 'ارباع ناقوس الميلاد' : return 'arba3_nakoos_3eed_mylad.mp3'; break;
+      case '`pouro فرايحي' : return 'eporo_fary7y.mp3'; break;
+      case 'مرد انجيل عشية الميلاد' : return 'maradEngeel3asheyaMilad.mp3'; break;
+      case 'مرد انجيل باكر الميلاد' : return 'maradEngeelBakerMilad.mp3'; break;
       case 'هيتين الميلاد' : return 'hiten_elmylad.mp3'; break;
-      case 'مرد الابركسيس' : return 'marad_epracic_elmylad.mp3'; break;
+      case 'مرد ابركسيس الميلاد' : return 'marad_epracic_elmylad.mp3'; break;
       case 'y par;enoc' : return 'iparthenoc.mp3'; break;
       case 'pijinmici + gene;lion' : return 'be_gen_misi_gensilion.mp3'; break;
-      case 'المحير' : return 'mo7yer_milad.mp3'; break;
-      case 'مرد المزمور' : return 'marad_mazmoor_elmylad.mp3'; break;
-      case 'مرد الانجيل' : return 'marad_engeel_oddas_elmylad.mp3'; break;
-      case 'اسبسمس ادام اول' : return 'first_aspasmocadam_elmylad.mp3'; break;
-      case 'اسبسمس ادام ثاني' : return 'second_aspasmocadam_elmylad.mp3'; break;
-      case 'اسبسمس ادام ثالث' : return 'third_aspasmocadam_elmylad.mp3'; break;
-      case 'اسبسمس ادام رابع' : return 'fourth_aspasmocadam_elmylad.mp3'; break;
-      case 'اسبسمس واطس اول' : return 'first_aspasmocwatos_elmylad.mp3'; break;
-      case 'اسبسمس واطس ثاني' : return 'second_aspasmocwatos_elmylad.mp3'; break;
-      case 'التوزيع' : return 'tawzee3_milad.mp3'; break;
-      case 'ختام الصلوات' : return 'khetam_elmylad.mp3'; break;
+      case 'محير الميلاد' : return 'mo7yer_milad.mp3'; break;
+      case 'مرد مزمور الميلاد' : return 'marad_mazmoor_elmylad.mp3'; break;
+      case 'مرد انجيل الميلاد' : return 'marad_engeel_oddas_elmylad.mp3'; break;
+      case 'اسبسمس ادام اول الميلاد' : return 'first_aspasmocadam_elmylad.mp3'; break;
+      case 'اسبسمس ادام ثاني الميلاد' : return 'second_aspasmocadam_elmylad.mp3'; break;
+      case 'اسبسمس ادام ثالث الميلاد' : return 'third_aspasmocadam_elmylad.mp3'; break;
+      case 'اسبسمس ادام رابع الميلاد' : return 'fourth_aspasmocadam_elmylad.mp3'; break;
+      case 'اسبسمس واطس اول الميلاد' : return 'first_aspasmocwatos_elmylad.mp3'; break;
+      case 'اسبسمس واطس ثاني الميلاد' : return 'second_aspasmocwatos_elmylad.mp3'; break;
+      case 'توزيع الميلاد' : return 'tawzee3_milad.mp3'; break;
+      case 'ختام صلوات الميلاد' : return 'khetam_elmylad.mp3'; break;
     }
   }
 
@@ -102,6 +143,7 @@ class MyladState extends State<Mylad>{
         Navigator.pop(context);
       },
       child: Scaffold(
+
         appBar: AppBar(
              backgroundColor: const Color.fromRGBO(22, 22, 22,1),
 
@@ -117,42 +159,42 @@ class MyladState extends State<Mylad>{
           children: [
             button('السبع طرائق'),
 
-            button('ارباع الناقوس'),
+            button('ارباع ناقوس الميلاد'),
 
-            button('pouro'),
+            button('`pouro فرايحي'),
 
-            button('مرد انجيل عشية'),
+            button('مرد انجيل عشية الميلاد'),
 
-            button('مرد انجيل باكر'),
+            button('مرد انجيل باكر الميلاد'),
 
             button('هيتين الميلاد'),
 
-            button('مرد الابركسيس'),
+            button('مرد ابركسيس الميلاد'),
 
             button('y par;enoc'),
 
             button('pijinmici + gene;lion'),
 
-            button('المحير'),
+            button('محير الميلاد'),
 
-            button('مرد المزمور'),
+            button('مرد مزمور الميلاد'),
 
-            button('مرد الانجيل'),
+            button('مرد انجيل الميلاد'),
 
-            button('اسبسمس ادام اول'),
+            button('اسبسمس ادام اول الميلاد'),
 
-            button('اسبسمس ادام ثاني'),
+            button('اسبسمس ادام ثاني الميلاد'),
 
-            button('اسبسمس ادام ثالث'),
+            button('اسبسمس ادام ثالث الميلاد'),
 
-            button('اسبسمس ادام رابع'),
+            button('اسبسمس ادام رابع الميلاد'),
 
-            button('اسبسمس واطس اول'),
+            button('اسبسمس واطس اول الميلاد'),
 
-            button('اسبسمس واطس ثاني'),
-            button('التوزيع'),
+            button('اسبسمس واطس ثاني الميلاد'),
+            button('توزيع الميلاد'),
 
-            button('ختام الصلوات'),
+            button('ختام صلوات الميلاد'),
           ],
         ),
       ),

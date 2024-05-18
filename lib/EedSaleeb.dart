@@ -1,9 +1,13 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
+
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:share/share.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'main.dart';
+import 'dart:convert';
+
 import 'AudioPlayerScreen.dart';
 class EedSaleeb extends StatefulWidget{
   String title;
@@ -20,7 +24,31 @@ class EedSaleebState extends State<EedSaleeb>{
   String title;
   var url,urlasync;
   EedSaleebState(this.title);
-  AudioPlayer audio = AudioPlayer();
+  AudioPlayer audio = AudioPlayer(); // BannerAd bannerAd = BannerAd(
+  //     adUnitId: HomePageState.bannerAdUnitId,
+  //     size: AdSize.banner,
+  //     request: const AdRequest(),
+  //     listener: AdListener(
+  //       onAdLoaded: (Ad ad) => print('BannerAd loaded.'),
+  //       onAdFailedToLoad: (Ad ad, LoadAdError error) {
+  //         ad.dispose();
+  //         print('BannerAd failed to load: $error');
+  //       },
+  //     )
+  // );
+  @override
+  void initState() {
+    super.initState();
+
+  }
+
+  @override
+  void dispose() {
+
+    super.dispose();
+  }
+
+
   String audioTitle;
   Future<String> getAudioUrl(text) async{
     var ref = await getAudioName(text);
@@ -60,21 +88,37 @@ class EedSaleebState extends State<EedSaleeb>{
     );
   }
 
-  Widget urlAndNavigate(text){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title)));
+  void urlAndNavigate(text) async {
+    String textContent = await getTextFileContent(text);
+    print(textContent);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title,textContent)));
+  }
+
+  Future<String> getTextFileContent(text) async {
+    Reference storage = FirebaseStorage.instance.ref().child("text_files").child("$text.txt");
+
+    // Retrieve text file as a byte array
+    final bytes = await storage.getData();
+
+    // Decode the byte array to string using UTF-8 encoding
+    final content = utf8.decode(bytes);
+
+    print('Content: $content');
+
+    return content;
   }
 
   getAudioName(title){
     switch(title){
-      case 'ارباع الناقوس' : return 'arba3_nakoos_saleeb.mp3'; break;
+      case 'ارباع ناقوس الصليب' : return 'arba3_nakoos_saleeb.mp3'; break;
       case 'مقدمة الذوكصولوجيات' : return 'intro_zoksolgiat_sha3aneen.mp3'; break;
       case 'مردات اناجيل الدورة' : return 'maradat_anageel_dawra_baker.mp3'; break;
-      case 'هيتينيات' : return 'hitens_3eedsaleeb.mp3'; break;
-      case 'مرد الابركسيس' : return 'marad_eprakcic_3eedsaleeb.mp3'; break;
+      case 'هيتينيات الصليب' : return 'hitens_3eedsaleeb.mp3'; break;
+      case 'مرد ابركسيس الصليب' : return 'marad_eprakcic_3eedsaleeb.mp3'; break;
       case 'etau``en ni`cqai' : return 'etafEniEskhai.mp3'; break;
-      case 'مرد الانجيل' : return 'maradengeel_3eedsaleeb.mp3'; break;
-      case 'الاسبسمس الادام' : return 'aspasmoc_adam_3eedsaleeb.mp3'; break;
-      case 'الاسبسمس الواطس' : return 'aspasmoc_watos_3eedsaleeb.mp3'; break;
+      case 'مرد انجيل الصليب' : return 'maradengeel_3eedsaleeb.mp3'; break;
+      case 'اسبسمس ادام الصليب' : return 'aspasmoc_adam_3eedsaleeb.mp3'; break;
+      case 'اسبسمس واطس الصليب' : return 'aspasmoc_watos_3eedsaleeb.mp3'; break;
     }
   }
 
@@ -88,6 +132,7 @@ class EedSaleebState extends State<EedSaleeb>{
         Navigator.pop(context);
       },
       child: Scaffold(
+
         appBar: AppBar(
              backgroundColor: const Color.fromRGBO(22, 22, 22,1),
 
@@ -101,22 +146,22 @@ class EedSaleebState extends State<EedSaleeb>{
           padding: const EdgeInsets.all(12),
           crossAxisCount: 2,
           children: [
-            button('ارباع الناقوس'),
+            button('ارباع ناقوس الصليب'),
             button('مقدمة الذوكصولوجيات'),
 
             button('مردات اناجيل الدورة'),
 
-            button('هيتينيات'),
+            button('هيتينيات الصليب'),
 
-            button('مرد الابركسيس'),
+            button('مرد ابركسيس الصليب'),
 
             button('etau``en ni`cqai'),
 
-            button('مرد الانجيل'),
+            button('مرد انجيل الصليب'),
 
-            button('الاسبسمس الادام'),
+            button('اسبسمس ادام الصليب'),
 
-            button('الاسبسمس الواطس'),
+            button('اسبسمس واطس الصليب'),
           ],
         ),
       ),

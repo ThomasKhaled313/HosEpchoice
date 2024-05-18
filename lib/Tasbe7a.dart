@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:hosepchoice/tasbe7aAl7an.dart';
-import 'package:hosepchoice/tasbe7aAl7anKyahk.dart';
-import 'package:hosepchoice/tasbe7aDamg.dart';
-import 'package:hosepchoice/tasbe7aDamgKyahk.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'main.dart';
+import 'tasbe7aAl7an.dart';
+import 'tasbe7aAl7anKyahk.dart';
+import 'tasbe7aDamg.dart';
+import 'tasbe7aDamgKyahk.dart';
 import 'Zoxologyat.dart';
 import 'ZoxologyatKyahk.dart';
+
 
 class Tasbe7a extends StatefulWidget{
   String title;
@@ -60,8 +63,29 @@ class Tasbe7aState extends State<Tasbe7a>{
   }
 
 
+   // BannerAd bannerAd = BannerAd(
+  //     adUnitId: HomePageState.bannerAdUnitId,
+  //     size: AdSize.banner,
+  //     request: const AdRequest(),
+  //     listener: AdListener(
+  //       onAdLoaded: (Ad ad) => print('BannerAd loaded.'),
+  //       onAdFailedToLoad: (Ad ad, LoadAdError error) {
+  //         ad.dispose();
+  //         print('BannerAd failed to load: $error');
+  //       },
+  //     )
+  // );
+  @override
+  void initState() {
+    super.initState();
 
+  }
 
+  @override
+  void dispose() {
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +95,7 @@ class Tasbe7aState extends State<Tasbe7a>{
         Navigator.pop(context);
       },
       child: Scaffold(
+
         appBar: AppBar(
           backgroundColor: const Color.fromRGBO(22, 22, 22,1),
 

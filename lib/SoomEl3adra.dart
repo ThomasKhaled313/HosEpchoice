@@ -1,11 +1,15 @@
 import 'dart:async';
-import 'package:fluttertoast/fluttertoast.dart';
+
+
 import 'package:flutter/material.dart';
 import 'AudioPlayerScreen.dart';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:share/share.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'main.dart';
+import 'dart:convert';
+
 class SoomEl3adra extends StatefulWidget{
   String title;
 
@@ -22,7 +26,29 @@ class SoomEl3adraState extends State<SoomEl3adra>{
   var url,urlasync;
   SoomEl3adraState(this.title);
   AudioPlayer audio = AudioPlayer();
+  // BannerAd bannerAd = BannerAd(
+  //     adUnitId: HomePageState.bannerAdUnitId,
+  //     size: AdSize.banner,
+  //     request: const AdRequest(),
+  //     listener: AdListener(
+  //       onAdLoaded: (Ad ad) => print('BannerAd loaded.'),
+  //       onAdFailedToLoad: (Ad ad, LoadAdError error) {
+  //         ad.dispose();
+  //         print('BannerAd failed to load: $error');
+  //       },
+  //     )
+  // );
+  @override
+  void initState() {
+    super.initState();
+    //
+  }
 
+  @override
+  void dispose() {
+    // bannerAd.dispose();
+    super.dispose();
+  }
 
   String audioTitle;
   Future<String> getAudioUrl(text) async{
@@ -63,8 +89,24 @@ class SoomEl3adraState extends State<SoomEl3adra>{
     );
   }
 
-  Widget urlAndNavigate(text){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title)));
+  void urlAndNavigate(text) async {
+    String textContent = await getTextFileContent(text);
+    print(textContent);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title,textContent)));
+  }
+
+  Future<String> getTextFileContent(text) async {
+    Reference storage = FirebaseStorage.instance.ref().child("text_files").child("$text.txt");
+
+    // Retrieve text file as a byte array
+    final bytes = await storage.getData();
+
+    // Decode the byte array to string using UTF-8 encoding
+    final content = utf8.decode(bytes);
+
+    print('Content: $content');
+
+    return content;
   }
 
   getAudioName(title){
@@ -75,7 +117,7 @@ class SoomEl3adraState extends State<SoomEl3adra>{
       case 'ari`precbeuin' : return 'ariebresvevin.mp3'; break;
       case 'sasf `ncop' : return 'shashf_ensob.mp3'; break;
       case 'deute' : return 'zefte_bandees.mp3'; break;
-      case 'rasi ne' : return 'aripresvevin_3adra.mp3'; break;
+      case 'rasi ne' : return 'rashine_3adra.mp3'; break;
       case 'cena`tso' : return 'cenaetsho.mp3'; break;
       case 'vai pe plumen' : return 'faibeblimen_3adra.mp3'; break;
       case '`n;o `;mau' : return 'enso_ethmaf_3adra.mp3'; break;
@@ -95,6 +137,7 @@ class SoomEl3adraState extends State<SoomEl3adra>{
         Navigator.pop(context);
       },
       child: Scaffold(
+
         appBar: AppBar(
           backgroundColor: const Color.fromRGBO(22, 22, 22,1),
           title: Text(title),

@@ -2,9 +2,16 @@
     package="com.ta.hosepchoice">
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:label="HocEpchoic"
-        android:name="${applicationName}"
+        android:label="Hos Epchoic"
         android:icon="@mipmap/ic_launcher">
+<!--        &lt;!&ndash;TEST ID IMPORTANT !!!&ndash;&gt;-->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~9214589741"/>
+        <!--REAL ID IMPORTANT !!!-->
+<!--               <meta-data-->
+<!--                   android:name="com.google.android.gms.ads.APPLICATION_ID"-->
+<!--                   android:value="ca-app-pub-1418459334888140~4243969869"/>-->
         <activity
             android:name=".MainActivity"
             android:exported="true"

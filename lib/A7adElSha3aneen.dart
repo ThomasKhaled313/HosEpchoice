@@ -1,12 +1,19 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'AudioPlayerScreen.dart';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:share/share.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'main.dart';
+import 'dart:convert';
+
+
+
+
+import 'main.dart';
 class A7adElSha3aneen extends StatefulWidget{
   String title;
 
@@ -23,7 +30,29 @@ class A7adElSha3aneenState extends State<A7adElSha3aneen>{
   var url,urlasync;
   A7adElSha3aneenState(this.title);
   AudioPlayer audio = AudioPlayer();
+   // BannerAd bannerAd = BannerAd(
+  //     adUnitId: HomePageState.bannerAdUnitId,
+  //     size: AdSize.banner,
+  //     request: const AdRequest(),
+  //     listener: AdListener(
+  //       onAdLoaded: (Ad ad) => print('BannerAd loaded.'),
+  //       onAdFailedToLoad: (Ad ad, LoadAdError error) {
+  //         ad.dispose();
+  //         print('BannerAd failed to load: $error');
+  //       },
+  //     )
+  // );
+  @override
+  void initState() {
+    super.initState();
 
+  }
+
+  @override
+  void dispose() {
+
+    super.dispose();
+  }
 
   String audioTitle;
   Future<String> getAudioUrl(text) async{
@@ -64,37 +93,53 @@ class A7adElSha3aneenState extends State<A7adElSha3aneen>{
     );
   }
 
-  Widget urlAndNavigate(text){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title)));
+  void urlAndNavigate(text) async {
+    String textContent = await getTextFileContent(text);
+    print(textContent);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title,textContent)));
+  }
+
+  Future<String> getTextFileContent(text) async {
+    Reference storage = FirebaseStorage.instance.ref().child("text_files").child("$text.txt");
+
+    // Retrieve text file as a byte array
+    final bytes = await storage.getData();
+
+    // Decode the byte array to string using UTF-8 encoding
+    final content = utf8.decode(bytes);
+
+    print('Content: $content');
+
+    return content;
   }
 
   getAudioName(title){
     switch(title){
       case 'مقدمة الذوكصولوجيات' : return 'intro_zoksolgiat_sha3aneen.mp3'; break;
       case 'الشيرات باللحن الوسط' : return 'sherat_sha3aneen_la7nelmo7ayyer.mp3'; break;
-      case 'مرد انجيل عشية' : return 'marad_engeel_3asheya_sha3aneen.mp3'; break;
-      case 'مرد انجيل باكر' : return 'maradengeel_baker_sha3aneen.mp3'; break;
-      case 'ارباع الناقوس' : return 'arba3nakoos_a7adelsa3aneen.mp3'; break;
-      case 'الذوكصولوجية الاولي' : return 'first_zoxology_a7adsha3aneen.mp3'; break;
-      case 'الذوكصولوجية الثانية' : return 'second_zoxology_a7adsha3aneen.mp3'; break;
-      case 'الذوكصولوجية الثالثة' : return 'third_zoxology_a7adelsa3aneen.mp3'; break;
+      case 'مرد انجيل عشية الشعانين' : return 'marad_engeel_3asheya_sha3aneen.mp3'; break;
+      case 'مرد انجيل باكر الشعانين' : return 'maradengeel_baker_sha3aneen.mp3'; break;
+      case 'ارباع ناقوس الشعانين' : return 'arba3nakoos_a7adelsa3aneen.mp3'; break;
+      case 'الذوكصولوجية الاولي للشعانين' : return 'first_zoxology_a7adsha3aneen.mp3'; break;
+      case 'الذوكصولوجية الثانية للشعانين' : return 'second_zoxology_a7adsha3aneen.mp3'; break;
+      case 'الذوكصولوجية الثالثة للشعانين' : return 'third_zoxology_a7adelsa3aneen.mp3'; break;
       case 'Masenak' : return 'tar7_a7adelsha3aneen.mp3'; break;
       case 'Eulogimenoc (الصغير)' : return 'eflogimenos.mp3'; break;
       case 'Eulogimenoc (الكبير)' : return 'evlogimenos_kebeer.mp3'; break;
       case 'Rasi ounof ciwn' : return 'kanoon_elsha3aneen.mp3'; break;
-      case 'مرد الابركسيس' : return 'marad_eprakcic_sha3aneen.mp3'; break;
-      case 'المحير' : return 'mo7ayyer_sha3aneen.mp3'; break;
-      case 'المزمور السنجاري' : return 'almazmoor_elsengary_a7adelsha3aneen.m4a'; break;
-      case 'المزمور الملخص' : return 'mazmoor_sha3aneen_sanawy.mp3'; break;
-      case 'مرد المزمور' : return 'marad_mazmoor_a7adsha3aneen.mp3'; break;
-      case 'مرد انجيل 1' : return 'maradengeel_awwel_a7adsha3aneen.mp3'; break;
-      case 'مرد انجيل 2' : return 'maradengeel_tany_a7adsha3aneen.mp3'; break;
-      case 'مرد انجيل 3' : return 'maradengeel_talet_a7adsha3aneen.mp3'; break;
-      case 'مرد انجيل 4' : return 'maradengeel_rabe3_a7adsha3aneen.mp3'; break;
-      case 'اسبسمس ادام' : return 'aspasmocadam_a7adsha3aneen.mp3'; break;
-      case 'اسبسمس واطس' : return 'aspasmoc_watos_a7adelsha3aneen.mp3'; break;
+      case 'مرد ابركسيس الشعانين' : return 'marad_eprakcic_sha3aneen.mp3'; break;
+      case 'محير الشعانين' : return 'mo7ayyer_sha3aneen.mp3'; break;
+      case 'المزمور السنجاري للشعانين' : return 'almazmoor_elsengary_a7adelsha3aneen.m4a'; break;
+      case 'المزمور الملخص للشعانين' : return 'mazmoor_sha3aneen_sanawy.mp3'; break;
+      case 'مرد مزمور الشعانين' : return 'marad_mazmoor_a7adsha3aneen.mp3'; break;
+      case 'مرد اول انجيل الشعانين' : return 'maradengeel_awwel_a7adsha3aneen.mp3'; break;
+      case 'مرد ثاني انجيل الشعانين' : return 'maradengeel_tany_a7adsha3aneen.mp3'; break;
+      case 'مرد ثالث انجيل الشعانين' : return 'maradengeel_talet_a7adsha3aneen.mp3'; break;
+      case 'مرد رابع انجيل الشعانين' : return 'maradengeel_rabe3_a7adsha3aneen.mp3'; break;
+      case 'اسبسمس ادام الشعانين' : return 'aspasmocadam_a7adsha3aneen.mp3'; break;
+      case 'اسبسمس واطس الشعانين' : return 'aspasmoc_watos_a7adelsha3aneen.mp3'; break;
       case 'Wcanna en tic' : return 'marad_wcanna_sha3aneen.mp3'; break;
-      case 'التوزيع' : return 'tawzee3_a7adsha3aneen.mp3'; break;
+      case 'توزيع الشعانين' : return 'tawzee3_a7adsha3aneen.mp3'; break;
       case 'ارباع ناقوس التجنيز' : return 'arba3_nakoos_tagneez.mp3'; break;
       case 'Kata ehoou' : return 'kata_ehoo_tagneez.mp3'; break;
       case 'e;be ]anactacic' : return 'esvety.mp3'; break;
@@ -115,6 +160,7 @@ class A7adElSha3aneenState extends State<A7adElSha3aneen>{
         Navigator.pop(context);
       },
       child: Scaffold(
+
         appBar: AppBar(
              backgroundColor: const Color.fromRGBO(22, 22, 22,1),
 
@@ -130,19 +176,19 @@ class A7adElSha3aneenState extends State<A7adElSha3aneen>{
           children: [
             button('الشيرات باللحن الوسط'),
 
-            button('مرد انجيل عشية'),
+            button('مرد انجيل عشية الشعانين'),
 
-            button('مرد انجيل باكر'),
+            button('مرد انجيل باكر الشعانين'),
 
-            button('ارباع الناقوس'),
+            button('ارباع ناقوس الشعانين'),
 
             button('مقدمة الذوكصولوجيات'),
 
-            button('الذوكصولوجية الاولي'),
+            button('الذوكصولوجية الاولي للشعانين'),
 
-            button('الذوكصولوجية الثانية'),
+            button('الذوكصولوجية الثانية للشعانين'),
 
-            button('الذوكصولوجية الثالثة'),
+            button('الذوكصولوجية الثالثة للشعانين'),
 
             button('Masenak'),
 
@@ -152,31 +198,31 @@ class A7adElSha3aneenState extends State<A7adElSha3aneen>{
 
             button('Rasi ounof ciwn'),
 
-            button('مرد الابركسيس'),
+            button('مرد ابركسيس الشعانين'),
 
-            button('المحير'),
+            button('محير الشعانين'),
 
-            button('المزمور السنجاري'),
+            button('المزمور السنجاري للشعانين'),
 
-            button('مرد المزمور'),
+            button('مرد مزمور الشعانين'),
 
-            button('مرد انجيل 1'),
+            button('مرد اول انجيل الشعانين'),
 
-            button('مرد انجيل 2'),
+            button('مرد ثاني انجيل الشعانين'),
 
-            button('مرد انجيل 3'),
+            button('مرد ثالث انجيل الشعانين'),
 
-            button('مرد انجيل 4'),
+            button('مرد رابع انجيل الشعانين'),
 
-            button('المزمور الملخص'),
+            button('المزمور الملخص للشعانين'),
 
-            button('اسبسمس ادام'),
+            button('اسبسمس ادام الشعانين'),
 
-            button('اسبسمس واطس'),
+            button('اسبسمس واطس الشعانين'),
 
             button('Wcanna en tic'),
 
-            button('التوزيع'),
+            button('توزيع الشعانين'),
 
             button('e;be ]anactacic'),
 

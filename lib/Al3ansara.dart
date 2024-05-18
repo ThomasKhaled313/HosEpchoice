@@ -3,9 +3,16 @@ import 'package:flutter/material.dart';
 import 'AudioPlayerScreen.dart';
 
 import 'package:firebase_storage/firebase_storage.dart';
+
+
+
+import 'dart:convert';
+
 import 'package:audioplayers/audioplayers.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:share/share.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'main.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'main.dart';
 class Al3ansara extends StatefulWidget{
   String title;
 
@@ -22,6 +29,29 @@ class Al3ansaraState extends State<Al3ansara>{
   var url,urlasync;
   Al3ansaraState(this.title);
   AudioPlayer audio = AudioPlayer();
+   // BannerAd bannerAd = BannerAd(
+  //     adUnitId: HomePageState.bannerAdUnitId,
+  //     size: AdSize.banner,
+  //     request: const AdRequest(),
+  //     listener: AdListener(
+  //       onAdLoaded: (Ad ad) => print('BannerAd loaded.'),
+  //       onAdFailedToLoad: (Ad ad, LoadAdError error) {
+  //         ad.dispose();
+  //         print('BannerAd failed to load: $error');
+  //       },
+  //     )
+  // );
+  @override
+  void initState() {
+    super.initState();
+
+  }
+
+  @override
+  void dispose() {
+
+    super.dispose();
+  }
 
 
   String audioTitle;
@@ -63,20 +93,36 @@ class Al3ansaraState extends State<Al3ansara>{
     );
   }
 
-  Widget urlAndNavigate(text){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title)));
+  void urlAndNavigate(text) async {
+    String textContent = await getTextFileContent(text);
+    print(textContent);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title,textContent)));
+  }
+
+  Future<String> getTextFileContent(text) async {
+    Reference storage = FirebaseStorage.instance.ref().child("text_files").child("$text.txt");
+
+    // Retrieve text file as a byte array
+    final bytes = await storage.getData();
+
+    // Decode the byte array to string using UTF-8 encoding
+    final content = utf8.decode(bytes);
+
+    print('Content: $content');
+
+    return content;
   }
 
   getAudioName(title){
     switch(title){
-      case 'أرباع الناقوس' : return 'arba3_nakoos_3ansara.mp3'; break;
-      case 'مرد الابركسيس' : return 'marad_eprakcic_3ansara.mp3'; break;
-      case 'Pi,rictoc aftwnf' : return 'pikhrictoc_aftonf_3ansara.mp3'; break;
-      case 'قطع الساعة الثالثة' : return 'keta3_eltalta_3ansara.mp3'; break;
-      case 'المحير' : return 'mo7ayyer_3ansara.mp3'; break;
+      case 'أرباع ناقوس العنصرة' : return 'arba3_nakoos_3ansara.mp3'; break;
+      case 'مرد ابركسيس العنصرة' : return 'marad_eprakcic_3ansara.mp3'; break;
+      case 'العنصرة Pi,rictoc aftwnf' : return 'pikhrictoc_aftonf_3ansara.mp3'; break;
+      case 'قطع الساعة الثالثة العنصرة' : return 'keta3_eltalta_3ansara.mp3'; break;
+      case 'محير العنصرة' : return 'mo7ayyer_3ansara.mp3'; break;
       case 'Pipneuma' : return 'piebnevma_3ansara.mp3'; break;
-      case 'مرد المزمور' : return 'marad_mazmoor_3ansara.mp3'; break;
-      case 'مرد الانجيل' : return 'marad_engeel_3ansara.mp3'; break;
+      case 'مرد مزمور العنصرة' : return 'marad_mazmoor_3ansara.mp3'; break;
+      case 'مرد انجيل العنصرة' : return 'marad_engeel_3ansara.mp3'; break;
 
 
     }
@@ -92,6 +138,7 @@ class Al3ansaraState extends State<Al3ansara>{
         Navigator.pop(context);
       },
       child: Scaffold(
+
         appBar: AppBar(
              backgroundColor: const Color.fromRGBO(22, 22, 22,1),
 
@@ -105,21 +152,21 @@ class Al3ansaraState extends State<Al3ansara>{
           padding: const EdgeInsets.all(12),
           crossAxisCount: 2,
           children: [
-            button('أرباع الناقوس'),
+            button('أرباع ناقوس العنصرة'),
 
-            button('Pi,rictoc aftwnf'),
+            button('العنصرة Pi,rictoc aftwnf'),
 
-            button('مرد الابركسيس'),
+            button('مرد ابركسيس العنصرة'),
 
-            button('قطع الساعة الثالثة'),
+            button('قطع الساعة الثالثة العنصرة'),
 
-            button('المحير'),
+            button('محير العنصرة'),
 
             button('Pipneuma'),
 
-            button('مرد المزمور'),
+            button('مرد مزمور العنصرة'),
 
-            button('مرد الانجيل')
+            button('مرد انجيل العنصرة')
           ],
         ),
       ),

@@ -1,11 +1,15 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
+
 import 'AudioPlayerScreen.dart';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:share/share.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'main.dart';
+import 'dart:convert';
+
 class SabtFara7 extends StatefulWidget{
   String title;
 
@@ -21,8 +25,29 @@ class SabtFara7State extends State<SabtFara7>{
   String title;
   var url,urlasync;
   SabtFara7State(this.title);
-  AudioPlayer audio = AudioPlayer();
+  AudioPlayer audio = AudioPlayer(); // BannerAd bannerAd = BannerAd(
+  //     adUnitId: HomePageState.bannerAdUnitId,
+  //     size: AdSize.banner,
+  //     request: const AdRequest(),
+  //     listener: AdListener(
+  //       onAdLoaded: (Ad ad) => print('BannerAd loaded.'),
+  //       onAdFailedToLoad: (Ad ad, LoadAdError error) {
+  //         ad.dispose();
+  //         print('BannerAd failed to load: $error');
+  //       },
+  //     )
+  // );
+  @override
+  void initState() {
+    super.initState();
 
+  }
+
+  @override
+  void dispose() {
+
+    super.dispose();
+  }
 
   String audioTitle;
   Future<String> getAudioUrl(text) async{
@@ -63,22 +88,38 @@ class SabtFara7State extends State<SabtFara7>{
     );
   }
 
-  Widget urlAndNavigate(text){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title)));
+  void urlAndNavigate(text) async {
+    String textContent = await getTextFileContent(text);
+    print(textContent);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title,textContent)));
+  }
+
+  Future<String> getTextFileContent(text) async {
+    Reference storage = FirebaseStorage.instance.ref().child("text_files").child("$text.txt");
+
+    // Retrieve text file as a byte array
+    final bytes = await storage.getData();
+
+    // Decode the byte array to string using UTF-8 encoding
+    final content = utf8.decode(bytes);
+
+    print('Content: $content');
+
+    return content;
   }
 
   getAudioName(title){
     switch(title){
-      case 'مرد انجيل باكر' : return 'marad_engeel_baker_sabtfara7.mp3'; break;
-      case 'مرد انجيل القداس' : return 'marad_engeel_koddas_sabtfara7.mp3'; break;
+      case 'مرد انجيل باكر سبت الفرح' : return 'marad_engeel_baker_sabtfara7.mp3'; break;
+      case 'مرد انجيل قداس سبت الفرح' : return 'marad_engeel_koddas_sabtfara7.mp3'; break;
       case 'anok pe pikouji' : return 'anok_ebty.mp3'; break;
       case 'anok pe pikouji(عربي)' : return 'anok_araby.mp3'; break;
-      case 'marenouwnh' : return 'marenouonh.mp3'; break;
-      case 'الهوس الثالث' : return 'thirdhos.mp3'; break;
+      case 'marenouwnh كاملة' : return 'marenouonh.mp3'; break;
+      case 'الهوس الثالث سبت الفرح' : return 'thirdhos.mp3'; break;
       case 'agioc a;anatoc nai nan' : return 'epsali_watos_sabtfara7.mp3'; break;
-      case 'vyetafsans' : return 'fyetafshansh_sanawy.mp3'; break;
-      case 'المحير' : return 'mo7ayyer_sabtfara7.mp3'; break;
-      case 'ختام باكر' : return 'khetambaker_sabtfara7.mp3'; break;
+      case 'vyetafsans سنوي' : return 'fyetafshansh_sanawy.mp3'; break;
+      case 'محير سبت الفرح' : return 'mo7ayyer_sabtfara7.mp3'; break;
+      case 'ختام باكر سبت الفرح' : return 'khetambaker_sabtfara7.mp3'; break;
       case 'erepicmou' : return 'erepiesmo.mp3'; break;
       case 'vyete ouon' : return 'fieteouon.wav'; break;
       case 'anok ainau' : return 'anok_ainav.opus'; break;
@@ -98,6 +139,7 @@ class SabtFara7State extends State<SabtFara7>{
         Navigator.pop(context);
       },
       child: Scaffold(
+
         appBar: AppBar(
              backgroundColor: const Color.fromRGBO(22, 22, 22,1),
 
@@ -111,25 +153,25 @@ class SabtFara7State extends State<SabtFara7>{
           padding: const EdgeInsets.all(12),
           crossAxisCount: 2,
           children: [
-            button('مرد انجيل باكر'),
+            button('مرد انجيل باكر سبت الفرح'),
 
-            button('مرد انجيل القداس'),
+            button('مرد انجيل قداس سبت الفرح'),
 
             button('anok pe pikouji'),
 
             button('anok pe pikouji(عربي)'),
 
-            button('marenouwnh'),
+            button('marenouwnh كاملة'),
 
-            button('الهوس الثالث'),
+            button('الهوس الثالث سبت الفرح'),
 
             button('agioc a;anatoc nai nan'),
 
-            button('vyetafsans'),
+            button('vyetafsans سنوي'),
 
-            button('المحير'),
+            button('محير سبت الفرح'),
 
-            button('ختام باكر'),
+            button('ختام باكر سبت الفرح'),
 
             button('erepicmou'),
 

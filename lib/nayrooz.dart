@@ -1,11 +1,15 @@
 import 'dart:async';
-import 'package:fluttertoast/fluttertoast.dart';
+
+
 import 'package:flutter/material.dart';
 import 'AudioPlayerScreen.dart';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:share/share.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'main.dart';
+import 'dart:convert';
+
 class Nayrooz extends StatefulWidget{
   String title;
 
@@ -21,8 +25,29 @@ class NayroozState extends State<Nayrooz>{
   String title;
   var url,urlasync;
   NayroozState(this.title);
-  AudioPlayer audio = AudioPlayer();
+  AudioPlayer audio = AudioPlayer(); // BannerAd bannerAd = BannerAd(
+  //     adUnitId: HomePageState.bannerAdUnitId,
+  //     size: AdSize.banner,
+  //     request: const AdRequest(),
+  //     listener: AdListener(
+  //       onAdLoaded: (Ad ad) => print('BannerAd loaded.'),
+  //       onAdFailedToLoad: (Ad ad, LoadAdError error) {
+  //         ad.dispose();
+  //         print('BannerAd failed to load: $error');
+  //       },
+  //     )
+  // );
+  @override
+  void initState() {
+    super.initState();
 
+  }
+
+  @override
+  void dispose() {
+
+    super.dispose();
+  }
 
   String audioTitle;
   Future<String> getAudioUrl(text) async{
@@ -63,23 +88,39 @@ class NayroozState extends State<Nayrooz>{
     );
   }
 
-  Widget urlAndNavigate(text){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title)));
+  void urlAndNavigate(text) async {
+    String textContent = await getTextFileContent(text);
+    print(textContent);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title,textContent)));
+  }
+
+  Future<String> getTextFileContent(text) async {
+    Reference storage = FirebaseStorage.instance.ref().child("text_files").child("$text.txt");
+
+    // Retrieve text file as a byte array
+    final bytes = await storage.getData();
+
+    // Decode the byte array to string using UTF-8 encoding
+    final content = utf8.decode(bytes);
+
+    print('Content: $content');
+
+    return content;
   }
 
   getAudioName(title){
     switch(title){
       case 'مقدمة أرباع الناقوس الواطس' : return 'mokademet_arba3_nakkos_faray7y_watos.mp3'; break;
       case 'مقدمة أرباع الناقوس الادام' : return 'mokademet_arba3_nakkos_faray7y_adam.mp3'; break;
-      case 'أرباع الناقوس' : return 'arba3_nakoos_nayrooz.mp3'; break;
-      case 'الذوكصولوجية' : return 'zoksologia_nayrooz.mp3'; break;
-      case 'مرد الابركسيس' : return 'marad_epraxic_nayrooz.mp3'; break;
-      case 'مرد المزمور' : return 'maradmazmoor_nayrooz.mp3'; break;
-      case 'مرد الإنجيل' : return 'maradengeel_nayrooz.mp3'; break;
-      case 'الاسبسمس الادام' : return 'aspacmocadam_nayrooz.mp3'; break;
-      case 'الاسبسمس الواطس' : return 'aspacmocwatosnayrooz.mp3'; break;
-      case 'التوزيع' : return 'tawzee3_nayrooz.mp3'; break;
-      case 'ختام الصلوات' : return 'khetam_nayrooz.mp3'; break;
+      case 'أرباع ناقوس النيروز' : return 'arba3_nakoos_nayrooz.mp3'; break;
+      case 'ذوكصولوجية النيروز' : return 'zoksologia_nayrooz.mp3'; break;
+      case 'مرد ابركسيس النيروز' : return 'marad_epraxic_nayrooz.mp3'; break;
+      case 'مرد مزمور النيروز' : return 'maradmazmoor_nayrooz.mp3'; break;
+      case 'مرد انجيل النيروز' : return 'maradengeel_nayrooz.mp3'; break;
+      case 'اسبسمس ادام النيروز' : return 'aspacmocadam_nayrooz.mp3'; break;
+      case 'اسبسمس واطس النيروز' : return 'aspacmocwatosnayrooz.mp3'; break;
+      case 'توزيع النيروز' : return 'tawzee3_nayrooz.mp3'; break;
+      case 'ختام صلوات النيروز' : return 'khetam_nayrooz.mp3'; break;
 
     }
   }
@@ -94,6 +135,7 @@ class NayroozState extends State<Nayrooz>{
         Navigator.pop(context);
       },
       child: Scaffold(
+
         appBar: AppBar(
              backgroundColor: const Color.fromRGBO(22, 22, 22,1),
 
@@ -111,23 +153,23 @@ class NayroozState extends State<Nayrooz>{
 
             button('مقدمة أرباع الناقوس الادام'),
 
-            button('أرباع الناقوس'),
+            button('أرباع ناقوس النيروز'),
 
-            button('الذوكصولوجية'),
+            button('ذوكصولوجية النيروز'),
 
-            button('مرد الابركسيس'),
+            button('مرد ابركسيس النيروز'),
 
-            button('مرد المزمور'),
+            button('مرد مزمور النيروز'),
 
-            button('مرد الإنجيل'),
+            button('مرد انجيل النيروز'),
 
-            button('الاسبسمس الادام'),
+            button('اسبسمس ادام النيروز'),
 
-            button('الاسبسمس الواطس'),
+            button('اسبسمس واطس النيروز'),
 
-            button('التوزيع'),
+            button('توزيع النيروز'),
 
-            button('ختام الصلوات'),
+            button('ختام صلوات النيروز'),
           ],
         ),
       ),
