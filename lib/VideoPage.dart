@@ -28,23 +28,40 @@ class _VideoPageState extends State<VideoPage> {
     ]);
     super.dispose();
   }
+  void _seekForward() {
+    final newPosition = widget.controller.value.position + Duration(seconds: 10);
+    widget.controller.seekTo(newPosition);
+  }
 
+  void _seekBackward() {
+    final newPosition = widget.controller.value.position - Duration(seconds: 10);
+    widget.controller.seekTo(newPosition);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: GestureDetector(
-        onTap: () {
-          setState(() {
-            if (widget.controller.value.isPlaying) {
-              widget.controller.pause();
-            } else {
-              if (widget.controller.value.position == widget.controller.value.duration) {
-                widget.controller.seekTo(Duration.zero);
-              }
-              widget.controller.play();
-            }
-          });
+        onTapDown: (details) {
+          print('hi');
+          final screenWidth = MediaQuery.of(context).size.width;
+          if (details.globalPosition.dx < screenWidth / 2) {
+            _seekBackward();
+          } else {
+            _seekForward();
+          }
         },
+        // onTap: () {
+        //   setState(() {
+        //     if (widget.controller.value.isPlaying) {
+        //       widget.controller.pause();
+        //     } else {
+        //       if (widget.controller.value.position == widget.controller.value.duration) {
+        //         widget.controller.seekTo(Duration.zero);
+        //       }
+        //       widget.controller.play();
+        //     }
+        //   });
+        // },
         child: Stack(
           children: [
             LayoutBuilder(
