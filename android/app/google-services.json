@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:620683473558:android:74683e70925c679a",
         "android_client_info": {
-          "package_name": "com.example.hos_epchoice2"
+          "package_name": "com.ta.hosepchoice"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "620683473558-q8qj9r111qgl9m0b57eb7fmlvht4t3o6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.hos_epchoice2",
+            "package_name": "com.ta.hosepchoice",
             "certificate_hash": "32b3e098a287e192dfd8df4cf1f0bfbb30d0c98a"
           }
         },
@@ -54,7 +54,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:620683473558:android:862938dda93ca1a5ba88b7",
         "android_client_info": {
-          "package_name": "com.example.myapplication1"
+          "package_name": "com.ta.hosepchoice"
         }
       },
       "oauth_client": [

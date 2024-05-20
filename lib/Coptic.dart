@@ -36,6 +36,13 @@ class _CopticState extends State<Coptic> {
     super.dispose();
   }
   String _searchQuery = '';
+  
+  void openVid(var url) async{
+    controller = VideoPlayerController.network(url);
+    await controller.initialize();
+    await Navigator.of(context).push(MaterialPageRoute(builder: (context) => VideoPage(controller: controller,)));
+    Navigator.pop(context, "Video");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +136,27 @@ class _CopticState extends State<Coptic> {
               content: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  IconButton(
+                  (buttonText == 'الحروف')?Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextButton(onPressed: (){
+                        openVid('https://firebasestorage.googleapis.com/v0/b/movieapp-216811.appspot.com/o/CopticVideos%2Fmoqadema%5B1%5D.mp4?alt=media&token=b8e26bae-bc41-4142-9f9d-1eff92d71270');
+                      }, child: Text('مقدمة')),
+                      TextButton(onPressed: (){
+                        openVid('https://firebasestorage.googleapis.com/v0/b/movieapp-216811.appspot.com/o/CopticVideos%2Fhoroof_mota7areka.mp4?alt=media&token=4bb72db8-f241-45ea-86a0-18681e6dffee');
+                      }, child: Text('الحروف المتحركة')),
+                      TextButton(onPressed: (){
+                        openVid('https://firebasestorage.googleapis.com/v0/b/movieapp-216811.appspot.com/o/CopticVideos%2Fhoroof_1_not2.mp4?alt=media&token=4140a2e2-f151-4c1f-8d18-464be44094b7');
+                      }, child: Text('حروف لها نطق واحد')),
+                      TextButton(onPressed: (){
+                        openVid('https://firebasestorage.googleapis.com/v0/b/movieapp-216811.appspot.com/o/CopticVideos%2Fhoroof_2_not2.mp4?alt=media&token=c82d9367-5309-4839-bb30-13530c6cfc0b');
+                      }, child: Text('حروف لها نطقين')),
+                      TextButton(onPressed: (){
+                          openVid(vUrl);
+                      }, child: Text('حروف لها اكثر من نطقين')),
+                    ],
+                  ):(vUrl != "" && vUrl != null)?IconButton(
                     icon: Icon(Icons.video_collection),
                     onPressed: () async{
                       controller = VideoPlayerController.network(vUrl);
@@ -138,7 +165,7 @@ class _CopticState extends State<Coptic> {
                       await Navigator.of(context).push(MaterialPageRoute(builder: (context) => VideoPage(controller: controller,)));
                       Navigator.pop(context, "Video");
                     },
-                  ),
+                  ):Text('Video is not available yet!',style: TextStyle(fontWeight: FontWeight.bold,),),
                   IconButton(
                     icon: Icon(Icons.picture_as_pdf),
                     onPressed: () async{
