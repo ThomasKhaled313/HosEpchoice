@@ -35,7 +35,7 @@ import 'package:firebase_core/firebase_core.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: ChooseCategory()));
+  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: SplashScreen()));
 }
 
 class Keys {}
@@ -49,6 +49,15 @@ class SplashScreen extends StatefulWidget {
 }
 
 class SplashScreenState extends State<SplashScreen> {
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(seconds: 3), () {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => ChooseCategory()),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -58,21 +67,34 @@ class SplashScreenState extends State<SplashScreen> {
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-                color: Color.fromARGB(255, 6, 3, 97),
-                gradient: LinearGradient(
-                    begin: Alignment.centerRight, end: Alignment.centerLeft, colors: [])),
+              gradient: LinearGradient(
+                begin: Alignment.centerRight,
+                end: Alignment.centerLeft,
+                colors: [
+                  Color.fromARGB(255, 36, 36, 40), // Start color
+                  Color.fromARGB(255, 0, 0, 0), // End color (you can replace this with another color of your choice)
+                ],
+              ),
+            ),
           ),
+
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              CircleAvatar(
-                backgroundColor: Color.fromARGB(200, 255, 255, 255),
-                radius: 100.0,
-                child: Image.asset('assets/m.png'),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: AssetImage('assets/m.png'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
               Padding(padding: EdgeInsets.only(top: 10.0)),
               Text(
-                'Hwc `e`p[oic',
+                'Hwc e`p[oic',
                 style: TextStyle(
                     color: Colors.white, fontSize: 32.0, fontFamily: 'Coptic'),
               ),
