@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'ChooseCategory.dart';
@@ -49,8 +51,29 @@ class SplashScreen extends StatefulWidget {
 }
 
 class SplashScreenState extends State<SplashScreen> {
+  double _progress = 0.0;
+  Timer _timer;
+
+  void _startLoading() {
+    _timer = Timer.periodic(Duration(milliseconds: 30), (Timer timer) {
+      setState(() {
+        _progress += 0.01;
+        if (_progress >= 1.0) {
+          timer.cancel();
+        }
+      });
+    });
+  }
+  @override
+  void dispose() {
+    _timer.cancel(); // Cancel the timer to avoid memory leaks
+    super.dispose();
+  }
+
   void initState() {
     super.initState();
+    _startLoading();
+
     Future.delayed(Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => ChooseCategory()),
@@ -93,6 +116,13 @@ class SplashScreenState extends State<SplashScreen> {
                 ),
               ),
               Padding(padding: EdgeInsets.only(top: 10.0)),
+              LinearProgressIndicator(
+                value: _progress,
+                backgroundColor: Color.fromARGB(255, 144, 22, 2),
+                valueColor: AlwaysStoppedAnimation<Color>(Color.fromARGB(
+                    255, 255, 72, 0)),
+              ),
+              SizedBox(height: 20,),
               Text(
                 'Hwc e`p[oic',
                 style: TextStyle(
