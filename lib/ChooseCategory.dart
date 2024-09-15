@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'Coptic.dart';
-import 'Taqs.dart';
+import '../../hos_epchoice_web/lib/Coptic.dart';
+import '../../hos_epchoice_web/lib/Taqs.dart';
 import 'main.dart';
 import 'package:in_app_update/in_app_update.dart';
 
