@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4b25db2f-e2fb-4fbe-96bf-2ec5fd88357f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/yohanna.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../assets/yohanna.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/A7adElSha3aneen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/A7adElSha3aneen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/Al3ansara.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/Al3ansara.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/AlSo3ood.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/AlSo3ood.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/Albas5a.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/Albas5a.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/AudioPlayerScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/AudioPlayerScreen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/BaramonGhotac.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/BaramonGhotac.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/BaramonMylad.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/BaramonMylad.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/Beshara.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/Beshara.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/EedAlQeyama.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/EedAlQeyama.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/EedSaleeb.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/EedSaleeb.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/ElTagally.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/ElTagally.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/Ghotac.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/Ghotac.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/Gom3a3azeema.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/Gom3a3azeema.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/KanaGaleel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/KanaGaleel.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/Keyahk.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/Keyahk.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/KhameesEl3ahd.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/KhameesEl3ahd.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/MaradatAsheyyaWeBaker.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/MaradatAsheyyaWeBaker.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/MaradatShammas.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/MaradatShammas.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/MaraddatKoddas.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/MaraddatKoddas.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/Mylad.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/Mylad.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/SabtFara7.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/SabtFara7.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/SabtLe3azar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/SabtLe3azar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/SoomEl3adra.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/SoomEl3adra.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/SoomElRosol.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/SoomElRosol.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/SoomKebeer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/SoomKebeer.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/SoomYonan.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/SoomYonan.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/Tasbe7a.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/Tasbe7a.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/Zoxologyat.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/Zoxologyat.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/ZoxologyatKyahk.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/ZoxologyatKyahk.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/koddas_basily.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/koddas_basily.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/koddas_gregory.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/koddas_gregory.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/koddas_kirollosy.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/koddas_kirollosy.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/nayrooz.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/nayrooz.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/tasbe7aAl7an.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/tasbe7aAl7an.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/tasbe7aAl7anKyahk.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/tasbe7aAl7anKyahk.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/tasbe7aDamg.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/tasbe7aDamg.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/tasbe7aDamgKyahk.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/tasbe7aDamgKyahk.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/yohanna.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/yohanna.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pubspec.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../pubspec.yaml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2fee1wUHguRp3A5DKUMPJ6teHwl" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4b25db2f-e2fb-4fbe-96bf-2ec5fd88357f" name="Default Changelist" comment="" />
+      <created>1714165759358</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1714165759358</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

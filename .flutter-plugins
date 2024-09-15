@@ -1,0 +1,22 @@
+# This is a generated file; do not edit or check into version control.
+audioplayers=C:\\src\\flutterSDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\audioplayers-0.15.1\\
+firebase_core=C:\\src\\flutterSDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_core-0.6.0\\
+firebase_core_web=C:\\src\\flutterSDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_core_web-0.2.1+3\\
+firebase_database=C:\\src\\flutterSDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_database-5.0.0\\
+firebase_storage=C:\\src\\flutterSDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_storage-6.0.0\\
+firebase_storage_web=C:\\src\\flutterSDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_storage_web-0.1.1+2\\
+fluttertoast=C:\\src\\flutterSDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\fluttertoast-7.1.8\\
+google_mobile_ads=C:\\src\\flutterSDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\google_mobile_ads-0.11.0+4\\
+in_app_update=C:\\src\\flutterSDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\in_app_update-1.1.15\\
+path_provider=C:\\src\\flutterSDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider-1.6.28\\
+path_provider_linux=C:\\src\\flutterSDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_linux-0.0.1+2\\
+path_provider_macos=C:\\src\\flutterSDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_macos-0.0.4+8\\
+path_provider_windows=C:\\src\\flutterSDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_windows-0.0.4+3\\
+share=C:\\src\\flutterSDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\share-0.6.5+4\\
+url_launcher=C:\\src\\flutterSDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher-5.7.10\\
+url_launcher_linux=C:\\src\\flutterSDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher_linux-0.0.1+4\\
+url_launcher_macos=C:\\src\\flutterSDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher_macos-0.0.1+9\\
+url_launcher_web=C:\\src\\flutterSDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher_web-0.1.5+3\\
+url_launcher_windows=C:\\src\\flutterSDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher_windows-0.0.1+3\\
+video_player=C:\\src\\flutterSDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\video_player-1.0.1\\
+video_player_web=C:\\src\\flutterSDK\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\video_player_web-0.1.4+1\\

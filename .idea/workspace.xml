@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidGradleBuildConfiguration">
+    <option name="COMMAND_LINE_OPTIONS" value="--stacktrace --debug" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8c55ffd5-8d5d-4934-b01d-bbceeedcbc6c" name="Default Changelist" comment="Hymns App">
+      <change beforePath="$PROJECT_DIR$/lib/ChooseCategory.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ChooseCategory.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Coptic.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Taqs.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/VideoPage.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\Thomas\.android\avd\Pixel_5_API_30.avd]" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2ObzaPMHlVgSUp5fbfZRuWEyl5k" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="io.flutter.reload.alreadyRun" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/android/app" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Thomas\StudioProjects\hosepchoice\android\app" />
+      <recent name="C:\Users\Thomas\StudioProjects\hosepchoice\fonts" />
+      <recent name="C:\Users\Thomas\StudioProjects\hosepchoice\lib" />
+      <recent name="C:\Users\Thomas\StudioProjects\hosepchoice" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Thomas\StudioProjects\hosepchoice\ios\Runner" />
+      <recent name="C:\Users\Thomas\StudioProjects\hosepchoice\ios" />
+      <recent name="C:\Users\Thomas\StudioProjects\hosepchoice\android\app" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="additionalArgs" value="--no-sound-null-safety" />
+      <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8c55ffd5-8d5d-4934-b01d-bbceeedcbc6c" name="Default Changelist" comment="" />
+      <created>1681844136006</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1681844136006</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Hymns App">
+      <created>1683640114336</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1683640114336</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Hymns App">
+      <created>1685484815660</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1685484815660</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Hymns App">
+      <created>1685484859386</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1685484859386</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Hymns App">
+      <created>1685529888420</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1685529888420</updated>
+    </task>
+    <task id="LOCAL-00005" summary="-added al7an kyahk tasbe7a">
+      <created>1696960428480</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1696960428480</updated>
+    </task>
+    <task id="LOCAL-00006" summary="-added al7an kyahk tasbe7a">
+      <created>1696960449903</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1696960449903</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Hymns App">
+      <created>1716027604119</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1716027604119</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Hymns App">
+      <created>1716027744636</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1716027744636</updated>
+    </task>
+    <task id="LOCAL-00009" summary="ios">
+      <created>1716130801676</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1716130801676</updated>
+    </task>
+    <task id="LOCAL-00010" summary="android">
+      <created>1716133125129</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1716133125129</updated>
+    </task>
+    <task id="LOCAL-00011" summary="video fast-farward/backward">
+      <created>1716133830817</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1716133830817</updated>
+    </task>
+    <task id="LOCAL-00012" summary="android">
+      <created>1716222690613</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1716222690613</updated>
+    </task>
+    <task id="LOCAL-00013" summary="splashScreen">
+      <created>1716223242169</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1716223242169</updated>
+    </task>
+    <task id="LOCAL-00014" summary="splashScreen">
+      <created>1716223560632</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1716223560632</updated>
+    </task>
+    <task id="LOCAL-00015" summary="ios">
+      <created>1716419976064</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1716419976064</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="-added al7an kyahk tasbe7a" />
+    <MESSAGE value="Hymns App" />
+    <MESSAGE value="video fast-farward/backward" />
+    <MESSAGE value="android" />
+    <MESSAGE value="splashScreen" />
+    <MESSAGE value="ios" />
+    <option name="LAST_COMMIT_MESSAGE" value="ios" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/AudioPlayerScreen.dart</url>
+          <line>173</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

@@ -1,0 +1,4 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+com/ta/hosepchoice/BuildConfig.java
+ com.ta.hosepchoice.BuildConfig
