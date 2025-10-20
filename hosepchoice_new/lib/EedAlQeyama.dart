@@ -1,0 +1,265 @@
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'AudioPlayerScreen.dart';
+import 'colors.dart';
+
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:audioplayers/audioplayers.dart';
+
+import 'main.dart';
+
+
+import 'dart:convert';
+
+class EedAlQeyama extends StatefulWidget{
+  String title;
+
+  EedAlQeyama(this.title);
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return EedAlQeyamaState(title);
+  }
+}
+
+class EedAlQeyamaState extends State<EedAlQeyama>{
+  String title;
+  var url,urlasync;
+  EedAlQeyamaState(this.title);
+  AudioPlayer audio = AudioPlayer(); // BannerAd bannerAd = BannerAd(
+  //     adUnitId: HomePageState.bannerAdUnitId,
+  //     size: AdSize.banner,
+  //     request: const AdRequest(),
+  //     listener: AdListener(
+  //       onAdLoaded: (Ad ad) => print('BannerAd loaded.'),
+  //       onAdFailedToLoad: (Ad ad, LoadAdError error) {
+  //         ad.dispose();
+  //         print('BannerAd failed to load: $error');
+  //       },
+  //     )
+  // );
+  @override
+  void initState() {
+    super.initState();
+
+  }
+
+  @override
+  void dispose() {
+
+    super.dispose();
+  }
+
+  String audioTitle = ' ';
+  Future<String> getAudioUrl(text) async{
+    var ref = await getAudioName(text);
+    audioTitle = text;
+    Reference storage = FirebaseStorage.instance.ref().child("${ref}");
+    String url = (await storage.getDownloadURL()).toString();
+    print('sadasfasfasfsa : ${url}');
+    return url;
+  }
+
+  Widget button(title){
+    return InkWell(
+      onTap: (){
+        getAudioUrl(title).then((onValue){
+          setState(() {
+            urlasync = onValue;
+          });
+        }).whenComplete((){
+          setState(() {
+            url = urlasync;
+          });
+          print('abo el urllllllllllllllllllllllllllllllllllllllll: $url');
+          urlAndNavigate(title);
+        });
+
+      },
+      child: new Container(
+        width: MediaQuery.of(context).size.width,
+        height: 50.0,
+        decoration: BoxDecoration(
+          color: AppColors.buttons_bg,
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        child: new Center(child: new Text(title, textAlign: TextAlign.center,style: new TextStyle(fontSize: 18.0, fontFamily: 'Coptic' ,color: Colors.white),),),
+      ),
+    );
+  }
+
+  void urlAndNavigate(text) async {
+    String textContent = await getTextFileContent(text);
+    print(textContent);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title,textContent)));
+  }
+
+  Future<String> getTextFileContent(text) async {
+    Reference storage = FirebaseStorage.instance.ref().child("text_files").child("$text.txt");
+
+    final bytes = await storage.getData();
+    if (bytes == null) {
+      throw Exception('Failed to load text file: bytes is null');
+    }
+    final content = utf8.decode(bytes);
+
+    print('Content: $content');
+
+    return content;
+  }
+
+  getAudioName(title){
+    switch(title){
+      case 'qen ouswt فرايحي' : return 'khen_oushot_faray7y.mp3'; break;
+      case 'أرباع ناقوس القيامة' : return 'araba3_nakoos_3eebelkeyama.mp3'; break;
+      case 'السبع طرائق' : return 'saba3_tarayek.mp3'; break;
+      case 'Tenoueh `ncwk' : return 'tenoweh_faray7y.mp3'; break;
+      case 'الذوكصولوجية الأولي للقيامة' : return 'tote_ron_qeyama.mp3'; break;
+      case 'vyetafsans فرايحي' : return 'fyetafshansh_faray7y.mp3'; break;
+      case 'ذوكصولوجية الملاك ميخائيل' : return 'ca_etanactacic.mp3'; break;
+      case 'مرد انجيل باكر القيامة' : return 'maradengeel_baker_elkeyama.mp3'; break;
+      case 'ختام باكر القيامة' : return '5etam_baker_qeyama.mp4'; break;
+      case '`pouro فرايحي' : return 'eporo_fary7y.mp3'; break;
+      case 'هيتينيات القيامة' : return 'hitens_keyama.mp3'; break;
+      case 'البولس الفرايحي' : return 'bavloselfary7y.mp3'; break;
+      case 'مرد ابركسيس القيامة' : return 'epraxicalqeyama.mp3'; break;
+      case 'kata ni,oroc(الحجاب)' : return 'katanikhoros7egab.mp3'; break;
+      case 'w nim nai cumvwnia' : return 'onemnai.mp3'; break;
+      case 'يا كل الصفوف' : return 'iakwlelswfof.mp3'; break;
+      case ',rictoc anecty(الطويلة) القيامة' : return 'khrectocanectylong.mp3'; break;
+      case ',rictoc anecty(القصيرة) القيامة' : return 'khrectocanectyshort.mp3'; break;
+      case 'ton cuna' : return 'toncena.mp3'; break;
+      case 'tou li;oc' : return 'tolithoc.mp3'; break;
+      case 'pi,rictoc aftwnf القيامة' : return 'pikhrictocaftwnf.mp3'; break;
+      case 'محير القيامة' : return 'patchoicalqyema.mp3'; break;
+      case 'مرد مزمور القيامة' : return 'maradmazmorelqeyama.mp3'; break;
+      case 'مرد انجيل القيامة' : return 'libonkeyama.mp3'; break;
+      case 'اسبسمس ادام القيامة الاول' : return 'apikhrictoc.mp3'; break;
+      case 'اسبسمس ادام القيامة الثاني' : return 'marenhos_aspasmocadam_qeyama.mp3'; break;
+      case 'اسبسمس ادام القيامة الثالث' : return 'apasmoc_thirdkeyama.mp3'; break;
+      case 'اسبسمس واطس القيامة' : return 'liponavkaf.mp3'; break;
+      case 'توزيع القيامة الكبير' : return 'tawzee3_33edkeyama.mp3'; break;
+      case 'kata ni,oroc(التوزيع)' : return 'katani_khoros_small.mp3'; break;
+      case 'قانون عشية وباكر القيامة' : return 'qanoon2eyama.mp3'; break;
+    }
+  }
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.pop(context);
+        return false;
+      },
+      child: Scaffold(
+        backgroundColor: AppColors.primary,
+        appBar: AppBar(
+          centerTitle: true,
+
+          // 👇 This changes the color of the back arrow (and other icons)
+          iconTheme: const IconThemeData(
+              color: Color(0xFFF0F0F0), // Change this to your desired color
+          ),
+          backgroundColor: AppColors.appbar,
+          title: const Text('Home',style: TextStyle(color: Color(0xFFF0F0F0),),),
+        ),
+        body: Container(
+          width: double.infinity,
+          height: double.infinity,
+          decoration: const BoxDecoration(
+            // 👇 Background color or gradient that matches image edges
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xFF222121),
+                Color(0xFF070707),
+              ],
+            ),
+            image: DecorationImage(
+              image: AssetImage('assets/bg.png'),
+              fit: BoxFit.contain,     // ✅ show full image
+              alignment: Alignment.center,
+            ),
+          ),
+          child: GridView.count(
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+            childAspectRatio: 4/2,
+            padding: const EdgeInsets.all(12),
+            crossAxisCount: 2,
+            children: [
+              button('qen ouswt فرايحي'),
+
+              button('Tenoueh `ncwk'),
+
+              button('أرباع ناقوس القيامة'),
+
+              button('السبع طرائق'),
+
+              button('الذوكصولوجية الأولي للقيامة'),
+
+              button('vyetafsans فرايحي'),
+
+              button('ذوكصولوجية الملاك ميخائيل'),
+
+              button('مرد انجيل باكر القيامة'),
+              button('ختام باكر القيامة'),
+
+              button('`pouro فرايحي'),
+
+              button('هيتينيات القيامة'),
+
+              button('البولس الفرايحي'),
+
+              button('مرد ابركسيس القيامة'),
+
+              button('kata ni,oroc(الحجاب)'),
+
+              button('w nim nai cumvwnia'),
+
+              button('يا كل الصفوف'),
+
+              button(',rictoc anecty(الطويلة) القيامة'),
+
+              button(',rictoc anecty(القصيرة) القيامة'),
+
+              button('ton cuna'),
+
+              button('tou li;oc'),
+
+              button('pi,rictoc aftwnf القيامة'),
+
+              button('محير القيامة'),
+
+              button('مرد مزمور القيامة'),
+
+              button('مرد انجيل القيامة'),
+
+              button('اسبسمس ادام القيامة الاول'),
+
+              button('اسبسمس ادام القيامة الثاني'),
+
+              button('اسبسمس ادام القيامة الثالث'),
+
+              button('اسبسمس واطس القيامة'),
+
+              button('توزيع القيامة الكبير'),
+
+              button('kata ni,oroc(التوزيع)'),
+
+              button('قانون عشية وباكر القيامة')
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+
+}
+
+

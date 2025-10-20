@@ -1,0 +1,223 @@
+import 'dart:async';
+import 'package:flutter/material.dart';
+
+
+import 'AudioPlayerScreen.dart';
+import 'colors.dart';
+
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:audioplayers/audioplayers.dart';
+
+import 'main.dart';
+import 'dart:convert';
+
+class SabtFara7 extends StatefulWidget{
+  String title;
+
+  SabtFara7(this.title);
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return SabtFara7State(title);
+  }
+}
+
+class SabtFara7State extends State<SabtFara7>{
+  String title;
+  var url,urlasync;
+  SabtFara7State(this.title);
+  AudioPlayer audio = AudioPlayer(); // BannerAd bannerAd = BannerAd(
+  //     adUnitId: HomePageState.bannerAdUnitId,
+  //     size: AdSize.banner,
+  //     request: const AdRequest(),
+  //     listener: AdListener(
+  //       onAdLoaded: (Ad ad) => print('BannerAd loaded.'),
+  //       onAdFailedToLoad: (Ad ad, LoadAdError error) {
+  //         ad.dispose();
+  //         print('BannerAd failed to load: $error');
+  //       },
+  //     )
+  // );
+  @override
+  void initState() {
+    super.initState();
+
+  }
+
+  @override
+  void dispose() {
+
+    super.dispose();
+  }
+
+  String audioTitle = ' ';
+  Future<String> getAudioUrl(text) async{
+    var ref = await getAudioName(text);
+    audioTitle = text;
+    Reference storage = FirebaseStorage.instance.ref().child("${ref}");
+    String url = (await storage.getDownloadURL()).toString();
+    print('sadasfasfasfsa : ${url}');
+    return url;
+  }
+
+  Widget button(title){
+    return InkWell(
+      onTap: (){
+        getAudioUrl(title).then((onValue){
+          setState(() {
+            urlasync = onValue;
+          });
+        }).whenComplete((){
+          setState(() {
+            url = urlasync;
+          });
+          print('abo el urllllllllllllllllllllllllllllllllllllllll: $url');
+          urlAndNavigate(title);
+        });
+
+      },
+      child: new Container(
+        width: MediaQuery.of(context).size.width,
+        height: 50.0,
+        decoration: BoxDecoration(
+          color: AppColors.buttons_bg,
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        child: new Center(child: new Text(title, textAlign: TextAlign.center,style: new TextStyle(fontSize: 18.0, fontFamily: 'Coptic' ,color: Colors.white),),),
+      ),
+    );
+  }
+
+  void urlAndNavigate(text) async {
+    String textContent = await getTextFileContent(text);
+    print(textContent);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>AudioPlayerScreen(url,audioTitle,title,textContent)));
+  }
+
+  Future<String> getTextFileContent(text) async {
+    Reference storage = FirebaseStorage.instance.ref().child("text_files").child("$text.txt");
+
+    final bytes = await storage.getData();
+    if (bytes == null) {
+      throw Exception('Failed to load text file: bytes is null');
+    }
+    final content = utf8.decode(bytes);
+
+    print('Content: $content');
+
+    return content;
+  }
+
+  getAudioName(title){
+    switch(title){
+      case 'مرد انجيل باكر سبت الفرح' : return 'marad_engeel_baker_sabtfara7.mp3'; break;
+      case 'مرد انجيل قداس سبت الفرح' : return 'marad_engeel_koddas_sabtfara7.mp3'; break;
+      case 'anok pe pikouji' : return 'anok_ebty.mp3'; break;
+      case 'anok pe pikouji(عربي)' : return 'anok_araby.mp3'; break;
+      case 'marenouwnh كاملة' : return 'marenouonh.mp3'; break;
+      case 'الهوس الثالث سبت الفرح' : return 'thirdhos.mp3'; break;
+      case 'agioc a;anatoc nai nan' : return 'epsali_watos_sabtfara7.mp3'; break;
+      case 'vyetafsans سنوي' : return 'fyetafshansh_sanawy.mp3'; break;
+      case 'محير سبت الفرح' : return 'mo7ayyer_sabtfara7.mp3'; break;
+      case 'ختام باكر سبت الفرح' : return 'khetambaker_sabtfara7.mp3'; break;
+      case 'erepicmou' : return 'erepiesmo.mp3'; break;
+      case 'vyete ouon' : return 'fieteouon.wav'; break;
+      case 'anok ainau' : return 'anok_ainav.opus'; break;
+      case 'الاحجار' : return 'tycenty_a7gar.mp3'; break;
+      case 'الاسباط' : return 'asbat.mp3'; break;
+      case 'panou]' : return 'panoty.mp3'; break;
+      case 'panou] عربي' : return 'Panoty_arabic.mp3'; break;
+    }
+  }
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.pop(context);
+        return false;
+      },
+      child: Scaffold(
+        backgroundColor: AppColors.primary,
+        appBar: AppBar(
+          centerTitle: true,
+
+          // 👇 This changes the color of the back arrow (and other icons)
+          iconTheme: const IconThemeData(
+              color: Color(0xFFF0F0F0), // Change this to your desired color
+          ),
+          backgroundColor: AppColors.appbar,
+          title: const Text('Home',style: TextStyle(color: Color(0xFFF0F0F0),),),
+        ),
+        body: Container(
+          width: double.infinity,
+          height: double.infinity,
+          decoration: const BoxDecoration(
+            // 👇 Background color or gradient that matches image edges
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xFF222121),
+                Color(0xFF070707),
+              ],
+            ),
+            image: DecorationImage(
+              image: AssetImage('assets/bg.png'),
+              fit: BoxFit.contain,     // ✅ show full image
+              alignment: Alignment.center,
+            ),
+          ),
+          child: GridView.count(
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+            childAspectRatio: 4/2,
+            padding: const EdgeInsets.all(12),
+            crossAxisCount: 2,
+            children: [
+              button('مرد انجيل باكر سبت الفرح'),
+
+              button('مرد انجيل قداس سبت الفرح'),
+
+              button('anok pe pikouji'),
+
+              button('anok pe pikouji(عربي)'),
+
+              button('marenouwnh كاملة'),
+
+              button('الهوس الثالث سبت الفرح'),
+
+              button('agioc a;anatoc nai nan'),
+
+              button('vyetafsans سنوي'),
+
+              button('محير سبت الفرح'),
+
+              button('ختام باكر سبت الفرح'),
+
+              button('erepicmou'),
+
+              button('vyete ouon'),
+
+              button('anok ainau'),
+
+              button('الاحجار'),
+
+              button('الاسباط'),
+
+              button('panou]'),
+
+              button('panou] عربي'),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+
+}
+
