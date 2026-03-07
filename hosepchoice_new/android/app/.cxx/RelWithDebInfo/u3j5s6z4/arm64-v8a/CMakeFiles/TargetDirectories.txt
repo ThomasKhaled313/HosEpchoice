@@ -1,0 +1,2 @@
+E:/HosEpchoice-master/hosepchoice_new/android/app/.cxx/RelWithDebInfo/u3j5s6z4/arm64-v8a/CMakeFiles/edit_cache.dir
+E:/HosEpchoice-master/hosepchoice_new/android/app/.cxx/RelWithDebInfo/u3j5s6z4/arm64-v8a/CMakeFiles/rebuild_cache.dir
