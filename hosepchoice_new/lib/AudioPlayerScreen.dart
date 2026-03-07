@@ -37,6 +37,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   void dispose() {
     _playbackSub?.cancel();
     _positionSub?.cancel();
+    audioHandler.stop();
     super.dispose();
   }
 

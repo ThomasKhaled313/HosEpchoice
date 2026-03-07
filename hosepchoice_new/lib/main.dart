@@ -1,8 +1,9 @@
-import 'dart:async';
+ import 'dart:async';
 
 import 'package:audio_service/audio_service.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:hosepchoice/Raf3B5oor.dart';
 import 'AudioPlayerScreen.dart';
 import 'audio_handler.dart';
 import 'colors.dart';
@@ -218,6 +219,10 @@ class HomePageState extends State<HomePage> {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => Basily(text)));
         break;
+      case 'رفع بخور عشية وباكر':
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Raf3B5oor(text)));
+        break;
       case 'القداس الغريغوري':
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => Gregory(text)));
@@ -418,6 +423,7 @@ class HomePageState extends State<HomePage> {
       'طقس عيد العنصرة': (page) => Al3ansaraState(page),
       'طقس البصخة المقدسة': (page) => AlBas5aState(page),
       'القداس الباسيلي': (page) => BasilyState(page),
+      'رفع بخور عشية وباكر': (page) => Raf3B5oor(page),
       'القداس الغريغوري': (page) => GregoryState(page),
       'القداس الكيرلسي': (page) => KirrolosyState(page),
       'طقس عيد النيروز': (page) => NayroozState(page),
@@ -448,38 +454,40 @@ class HomePageState extends State<HomePage> {
     };
     // TODO: implement build
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          centerTitle: true,
-
-          // 👇 This changes the color of the back arrow (and other icons)
-          iconTheme: const IconThemeData(
-            color: Color(0xFFF0F0F0), // Change this to your desired color
-          ),
           backgroundColor: AppColors.appbar,
-          title: const Text(
-            'Home',
-            style: TextStyle(
-              color: Color(0xFFF0F0F0),
+          iconTheme: const IconThemeData(color: Color(0xFFF0F0F0)),
+          title: Directionality(
+            textDirection: TextDirection.rtl,
+            child: TextField(
+              onChanged: (value) {
+                setState(() {
+                  query = value;
+                });
+              },
+              textAlign: TextAlign.right,
+              style: const TextStyle(color: Colors.white, fontSize: 16),
+              decoration: const InputDecoration(
+                hintText: 'ابحث عن لحن...',
+                hintStyle: TextStyle(color: Colors.white),
+                prefixIcon: Icon(Icons.search, color: Colors.white70),
+                filled: true,
+                fillColor: Colors.transparent,
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.symmetric(vertical: 10),
+              ),
             ),
           ),
         ),
-        body: Container(
+
+    body: Container(
             width: double.infinity,
-            height: double.infinity,
           decoration: const BoxDecoration(
-            // 👇 Background color or gradient that matches image edges
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Color(0xFF222121),
-                Color(0xFF070707),
-              ],
-            ),
+
             image: DecorationImage(
               image: AssetImage('assets/bg.png'),
-              fit: BoxFit.contain,     // ✅ show full image
-              alignment: Alignment.center,
+              fit: BoxFit.cover,     // ✅ sh
             ),
           ),
           child: Stack(textDirection: TextDirection.rtl, children: [
@@ -488,31 +496,7 @@ class HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Directionality(
-                    textDirection: TextDirection.rtl,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        hintText: 'ابحث عن لحن ...',
-                        suffixIcon: Icon(Icons.search, color: Colors.grey[700]),
-                        filled: true,
-                        fillColor: Colors.white,
-                        contentPadding:
-                            const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                      onChanged: (value) {
-                        setState(() {
-                          query = value;
-                        });
-                      },
-                    ),
-                  ),
-                ),
+
                 if (query.isNotEmpty)
                   Expanded(
                     child: ListView.builder(
@@ -616,6 +600,8 @@ class HomePageState extends State<HomePage> {
                               items: [
                                 button('القداس الباسيلي',
                                     imagePath: 'assets/odas basili.png'),
+                                button('رفع بخور عشية وباكر',
+                                    imagePath: 'assets/raf3 bokhour.png'),
                                 button('القداس الغريغوري',
                                     imagePath: 'assets/odas ghrighory.png'),
                                 button('القداس الكيرلسي',

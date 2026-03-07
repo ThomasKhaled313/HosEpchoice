@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'Tasbe7et3asheyya.dart';
 import 'colors.dart';
 import 'main.dart';
 import 'tasbe7aAl7an.dart';
@@ -36,6 +37,9 @@ class Tasbe7aState extends State<Tasbe7a>{
         }
         else if (title == 'الذوكصولوجيات'){
           Navigator.push(context, MaterialPageRoute(builder: (context)=>Zoxologyat(title)));
+        }
+        else if (title == 'تسبحة عشية'){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>Tasbe7et3asheyya(title)));
         }
         else if(title == 'سنوي الحان'){
           Navigator.push(context, MaterialPageRoute(builder: (context)=>Tasbe7aAl7an(title)));
@@ -98,12 +102,14 @@ class Tasbe7aState extends State<Tasbe7a>{
       child: Scaffold(
         backgroundColor: AppColors.primary,
         appBar: AppBar(
+          centerTitle: true,
+
+          // 👇 This changes the color of the back arrow (and other icons)
           iconTheme: const IconThemeData(
             color: Color(0xFFF0F0F0), // Change this to your desired color
           ),
           backgroundColor: AppColors.appbar,
-
-          title: Text(title,style: TextStyle(color: Colors.white),),
+          title:  Text(title,style: TextStyle(color: Color(0xFFF0F0F0),),),
         ),
         body: Container(
           width: double.infinity,
@@ -131,6 +137,8 @@ class Tasbe7aState extends State<Tasbe7a>{
             padding: const EdgeInsets.all(12),
             crossAxisCount: 2,
             children: [
+              button('تسبحة عشية'),
+
               button('سنوي دمج'),
 
               button('سنوي الحان'),

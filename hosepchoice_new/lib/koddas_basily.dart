@@ -115,10 +115,7 @@ class BasilyState extends State<Basily>{
 
   getAudioName(title){
     switch(title){
-      case 'Qen pi,rictoc iycouc' : return 'khen_pikhrictoc_sanawy.mp3'; break;
-      case 'أرباع الناقوس الأدام' : return 'araba3_nakoos_adam.mp3'; break;
-      case 'أرباع الناقوس الواطس' : return 'arba3_nakoos_watos.mp3'; break;
-      case 'بقية أرباع الناقوس' : return 'rest_arba3_nakoos.mp3'; break;
+
       case 'Tenouwst `mviwt' : return 'elbaraka.wav'; break;
       case 'A pinau swpi' : return 'a_pinav_shobi.mp3'; break;
       case 'اللي القربان' : return 'alli_alkorban.mp3'; break;
@@ -217,13 +214,7 @@ class BasilyState extends State<Basily>{
               padding: const EdgeInsets.all(12),
               crossAxisCount: 2,
               children: [
-                button('Qen pi,rictoc iycouc'),
 
-                button('أرباع الناقوس الأدام'),
-
-                button('أرباع الناقوس الواطس'),
-
-                button('بقية أرباع الناقوس'),
 
                 button('Tenouwst `mviwt'),
 
